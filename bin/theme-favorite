@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TP_HOME="${HOME}/.config/theme-picker"
+THEMES_DIR="$TP_HOME/themes"
+FAV="$TP_HOME/state/favorites"
+mkdir -p "$(dirname "$FAV")"
+touch "$FAV"
+
+usage() {
+  cat <<EOF
+Usage: theme-favorite <command> [SLUG]
+
+Commands:
+  add SLUG       Mark SLUG as favorite (idempotent)
+  rm SLUG        Remove SLUG from favorites
+  toggle SLUG    Add if missing, remove if present
+  list           Print favorites, one per line
+  has SLUG       Exit 0 if SLUG is favorite, else 1
+  clear          Remove all favorites (asks confirmation)
+  pick           Interactive picker (fzf) to add favorites
+EOF
+}
+
+valid_slug() {
+  [ -d "$THEMES_DIR/$1" ]
+}
+
+is_fav() {
+  grep -Fxq "$1" "$FAV"
+}
+
+add_fav() {
+  valid_slug "$1" || { echo "ERROR: unknown theme '$1'" >&2; exit 1; }
+  if ! is_fav "$1"; then
+    echo "$1" >> "$FAV"
+    echo "added: $1"
+  fi
+}
+
+rm_fav() {
+  if is_fav "$1"; then
+    tmp="$(mktemp)"
+    grep -Fxv "$1" "$FAV" > "$tmp" || true
+    mv "$tmp" "$FAV"
+    echo "removed: $1"
+  fi
+}
+
+cmd="${1:-list}"
+case "$cmd" in
+  add)     [ $# -ge 2 ] || { usage >&2; exit 1; }; add_fav "$2" ;;
+  rm|remove|del|delete)
+           [ $# -ge 2 ] || { usage >&2; exit 1; }; rm_fav "$2" ;;
+  toggle)  [ $# -ge 2 ] || { usage >&2; exit 1; }
+           if is_fav "$2"; then rm_fav "$2"; else add_fav "$2"; fi ;;
+  list|ls) sort -u "$FAV" 2>/dev/null || true ;;
+  has)     [ $# -ge 2 ] || { usage >&2; exit 1; }; is_fav "$2" ;;
+  clear)
+           read -r -p "Clear all favorites? [y/N] " ans
+           case "$ans" in
+             y|Y|yes|YES) : > "$FAV"; echo "cleared" ;;
+             *) echo "aborted" ;;
+           esac ;;
+  pick)
+           command -v fzf >/dev/null 2>&1 || { echo "ERROR: fzf required" >&2; exit 1; }
+           command -v jq  >/dev/null 2>&1 || { echo "ERROR: jq required" >&2; exit 1; }
+           tmpfile="$(mktemp)"; trap 'rm -f "$tmpfile"' EXIT
+           for dir in "$THEMES_DIR"/*/; do
+             [ -d "$dir" ] || continue
+             meta="$dir/metadata.json"
+             [ -f "$meta" ] || continue
+             slug="$(basename "$dir")"
+             rank="$(jq -r '.rank // 999' "$meta")"
+             name="$(jq -r '.name // ""' "$meta")"
+             mark="☆"
+             is_fav "$slug" && mark="★"
+             printf "%05d\t%s %s\t%s\n" "$rank" "$mark" "$slug" "$name"
+           done | sort | cut -f2- > "$tmpfile"
+
+           sel="$(fzf --multi --no-sort --cycle --ansi \
+             --header="Favoriten auswählen: Tab=mehrere, Enter=ok, Esc=abbruch" \
+             --prompt='Fav ❯ ' --height=80% --layout=reverse --border \
+             < "$tmpfile" || true)"
+           [ -z "$sel" ] && { echo "no change"; exit 0; }
+           while IFS= read -r line; do
+             slug="$(awk '{print $2}' <<<"$line")"
+             [ -n "$slug" ] && add_fav "$slug"
+           done <<<"$sel"
+           ;;
+  -h|--help|help) usage ;;
+  *) echo "Unknown command: $cmd" >&2; usage >&2; exit 1 ;;
+esac

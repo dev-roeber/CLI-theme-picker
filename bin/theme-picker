@@ -5,7 +5,7 @@ TP_HOME="${HOME}/.config/theme-picker"
 THEMES_DIR="$TP_HOME/themes"
 STATE="$TP_HOME/state/current-theme"
 BACKUP_ROOT="$TP_HOME/backups"
-SSH_HOST="sebastian@178.104.51.78"
+SSH_HOST="${THEME_PICKER_SSH_HOST:-}"
 
 export THEMES_DIR
 
@@ -20,13 +20,21 @@ Options:
   --mode local|server|all
                        Same as --local/--server/--all
   --theme SLUG         Use SLUG (skip fzf)
+  --favorites          Only show themes marked as favorite
   --list               Show theme list and exit
   -h, --help           Show this help
+
+Picker keybindings:
+  Ctrl-F   toggle favorite for highlighted theme (★/☆)
 EOF
 }
 
 MODE=""
 SLUG=""
+FAV_ONLY=0
+FAV_FILE="$TP_HOME/state/favorites"
+[ -f "$FAV_FILE" ] || { mkdir -p "$(dirname "$FAV_FILE")"; : > "$FAV_FILE"; }
+export FAV_FILE
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -39,9 +47,10 @@ while [ $# -gt 0 ]; do
         *) echo "ERROR: --mode requires local|server|all" >&2; exit 1 ;;
       esac
       ;;
-    --theme)   SLUG="${2:-}"; shift 2 ;;
-    --list)    exec "$TP_HOME/bin/theme-list" ;;
-    -h|--help) usage; exit 0 ;;
+    --theme)     SLUG="${2:-}"; shift 2 ;;
+    --favorites|--favs|--fav) FAV_ONLY=1; shift ;;
+    --list)      exec "$TP_HOME/bin/theme-list" ;;
+    -h|--help)   usage; exit 0 ;;
     *) echo "Unknown option: $1" >&2; usage >&2; exit 1 ;;
   esac
 done
@@ -74,6 +83,11 @@ if [ -z "$SLUG" ]; then
   tmpfile="$(mktemp)"
   trap 'rm -f "$tmpfile"' EXIT
 
+  # Load favorites into associative-like lookup
+  fav_lookup="$(mktemp)"
+  sort -u "$FAV_FILE" 2>/dev/null > "$fav_lookup" || true
+  trap 'rm -f "$tmpfile" "$fav_lookup"' EXIT
+
   # Build sorted list with rank prefix preserved as first field for sort,
   # then strip on display via --with-nth=2..
   for dir in "$THEMES_DIR"/*/; do
@@ -81,6 +95,16 @@ if [ -z "$SLUG" ]; then
     meta="$dir/metadata.json"
     [ -f "$meta" ] || continue
     slug="$(basename "$dir")"
+    if grep -Fxq "$slug" "$fav_lookup"; then
+      fav_mark=$'\033[33m\xe2\x98\x85\033[0m'   # yellow ★
+      is_fav=1
+    else
+      fav_mark=$'\033[90m\xe2\x98\x86\033[0m'   # dim ☆
+      is_fav=0
+    fi
+    if [ "$FAV_ONLY" -eq 1 ] && [ "$is_fav" -eq 0 ]; then
+      continue
+    fi
     rank="$(jq -r '.rank // 999' "$meta")"
     name="$(jq -r '.name // ""' "$meta")"
     category="$(jq -r '.category // ""' "$meta")"
@@ -91,27 +115,53 @@ if [ -z "$SLUG" ]; then
     else
       mark=$'\033[90m○\033[0m'
     fi
-    # Fields: sortkey \t mark \t slug \t rank \t category \t nerd \t rec \t name
-    printf "%05d\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
-      "$rank" "$mark" "$slug" "$rank" "$category" "$nerd" "$rec" "$name"
+    # Fields: sortkey \t mark \t slug \t rank \t category \t nerd \t rec \t name \t favmark
+    printf "%05d\t%s %s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
+      "$rank" "$mark" "$fav_mark" "$slug" "$rank" "$category" "$nerd" "$rec" "$name"
   done | sort -n > "$tmpfile"
 
+  if [ ! -s "$tmpfile" ]; then
+    if [ "$FAV_ONLY" -eq 1 ]; then
+      echo "No favorites yet. Add some with: theme-favorite add SLUG  (or theme-favorite pick)" >&2
+    else
+      echo "No themes found in $THEMES_DIR" >&2
+    fi
+    exit 1
+  fi
+
   # Pretty display via awk while preserving sort order; emit a hidden
-  # numeric sort key as col 1, then visible columns 2..N.
+  # numeric sort key as col 1, mark+fav as col 2, slug as col 3, rest visible.
   display_file="$(mktemp)"
-  trap 'rm -f "$tmpfile" "$display_file"' EXIT
+  trap 'rm -f "$tmpfile" "$fav_lookup" "$display_file"' EXIT
   awk -F'\t' '{
     printf "%s\t%s\t%-34s %-4s %-18s %-5s %-9s %s\n", $1, $2, $3, $4, $5, $6, $7, $8
   }' "$tmpfile" > "$display_file"
 
   if [ -t 0 ] && [ "$has_fzf" -eq 1 ]; then
-    header_line1=$'\xe2\x86\x91/\xe2\x86\x93 w\xc3\xa4hlen \xc2\xb7 Enter best\xc3\xa4tigen \xc2\xb7 / filtern \xc2\xb7 Tab markieren \xc2\xb7 Ctrl-A alle \xc2\xb7 Esc abbrechen'
+    header_line1=$'\xe2\x86\x91/\xe2\x86\x93 w\xc3\xa4hlen \xc2\xb7 Enter \xc2\xb7 / filtern \xc2\xb7 Tab markieren \xc2\xb7 Ctrl-F Fav-Toggle \xc2\xb7 Esc abbrechen'
     if [ -n "$current_theme" ]; then
       header_line2="Current: $current_theme"
     else
       header_line2="Current: (none)"
     fi
     header="$header_line1"$'\n'"$header_line2"
+
+    # Reload-script for fzf Ctrl-F: rebuild list (re-evaluate favorite marker).
+    # Use a tiny inline script writing to $display_file; fzf reloads from stdout.
+    reload_cmd='
+      FAV="'"$FAV_FILE"'"
+      cur="'"$current_theme"'"
+      for d in "'"$THEMES_DIR"'"/*/; do
+        [ -d "$d" ] || continue
+        m="$d/metadata.json"; [ -f "$m" ] || continue
+        s="$(basename "$d")"
+        if grep -Fxq "$s" "$FAV" 2>/dev/null; then fm=$'"'"'\033[33m\xe2\x98\x85\033[0m'"'"'; else fm=$'"'"'\033[90m\xe2\x98\x86\033[0m'"'"'; fi
+        if [ "$s" = "$cur" ]; then mk=$'"'"'\033[32m●\033[0m'"'"'; else mk=$'"'"'\033[90m○\033[0m'"'"'; fi
+        r=$(jq -r ".rank // 999" "$m"); n=$(jq -r ".name // \"\"" "$m"); c=$(jq -r ".category // \"\"" "$m")
+        nf=$(jq -r "if .nerd_font_required then \"yes\" else \"no\" end" "$m"); rc=$(jq -r ".recommended_for // \"\"" "$m")
+        printf "%05d\t%s %s\t%s\t%s\t%s\t%s\t%s\t%s\n" "$r" "$mk" "$fm" "$s" "$r" "$c" "$nf" "$rc" "$n"
+      done | sort -n | awk -F"\t" "{printf \"%s\t%s\t%-34s %-4s %-18s %-5s %-9s %s\n\", \$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8}"
+    '
 
     selection="$(fzf \
       --ansi \
@@ -125,6 +175,7 @@ if [ -z "$SLUG" ]; then
       --nth=2.. \
       --header="$header" \
       --prompt='Theme ❯ ' \
+      --bind="ctrl-f:execute-silent('$TP_HOME/bin/theme-favorite' toggle {3})+reload(bash -c '$reload_cmd')" \
       --preview="printf '\033[1mTheme:\033[0m %s\n\n' {3}; cat \"$THEMES_DIR/{3}/metadata.json\" | jq ." \
       --preview-window=right:45%:wrap \
       < "$display_file" || true)"

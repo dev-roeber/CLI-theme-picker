@@ -5,7 +5,7 @@ TP_HOME="${HOME}/.config/theme-picker"
 THEMES_DIR="$TP_HOME/themes"
 STATE="$TP_HOME/state/current-theme"
 BACKUP_ROOT="$TP_HOME/backups"
-SSH_HOST="sebastian@178.104.51.78"
+SSH_HOST="${THEME_PICKER_SSH_HOST:-}"
 
 if ! command -v jq >/dev/null 2>&1; then
   echo "ERROR: jq is required" >&2
@@ -17,7 +17,19 @@ if [ -s "$STATE" ]; then
   current="$(cat "$STATE")"
 fi
 
-printf "%-1s %-4s %-34s %-18s %-5s %-9s %s\n" " " "RANK" "SLUG" "CATEGORY" "NERD" "REC.FOR" "NAME"
+FAV_FILE="$TP_HOME/state/favorites"
+fav_tmp="$(mktemp)"
+sort -u "$FAV_FILE" 2>/dev/null > "$fav_tmp" || true
+
+# Optional filter --favorites/--favs
+FAV_ONLY=0
+for a in "$@"; do
+  case "$a" in
+    --favorites|--favs|--fav) FAV_ONLY=1 ;;
+  esac
+done
+
+printf "%-1s %-1s %-4s %-34s %-18s %-5s %-9s %s\n" " " "F" "RANK" "SLUG" "CATEGORY" "NERD" "REC.FOR" "NAME"
 
 # Build a sortable list: rank<TAB>slug
 tmpfile="$(mktemp)"
@@ -32,7 +44,19 @@ for dir in "$THEMES_DIR"/*/; do
   printf "%05d\t%s\n" "$rank" "$slug" >> "$tmpfile"
 done
 
+trap 'rm -f "$tmpfile" "$fav_tmp"' EXIT
+
 sort "$tmpfile" | while IFS=$'\t' read -r _rank slug; do
+  if grep -Fxq "$slug" "$fav_tmp"; then
+    fav="★"
+    is_fav=1
+  else
+    fav=" "
+    is_fav=0
+  fi
+  if [ "$FAV_ONLY" -eq 1 ] && [ "$is_fav" -eq 0 ]; then
+    continue
+  fi
   meta="$THEMES_DIR/$slug/metadata.json"
   rank="$(jq -r '.rank // ""' "$meta")"
   name="$(jq -r '.name // ""' "$meta")"
@@ -43,5 +67,5 @@ sort "$tmpfile" | while IFS=$'\t' read -r _rank slug; do
   if [ "$slug" = "$current" ]; then
     marker="*"
   fi
-  printf "%-1s %-4s %-34s %-18s %-5s %-9s %s\n" "$marker" "$rank" "$slug" "$category" "$nerd" "$rec" "$name"
+  printf "%-1s %-1s %-4s %-34s %-18s %-5s %-9s %s\n" "$marker" "$fav" "$rank" "$slug" "$category" "$nerd" "$rec" "$name"
 done
