@@ -16,7 +16,7 @@ OPT_TOOLS=(delta eza lsd lazygit btop nvim kitty ghostty alacritty)
 REQ_FILES=(starship.toml tmux.conf fzf.zsh bat.conf theme.env metadata.json)
 SYMLINKS=("$HOME/.config/starship.toml" "$HOME/.config/tmux/theme.conf" "$HOME/.config/fzf/theme.zsh" "$HOME/.config/bat/config")
 ZSHRC_MARKERS=("# >>> theme-picker path >>>" "# >>> theme-picker starship >>>" "# >>> theme-picker env >>>" "# >>> theme-picker fzf >>>")
-SSH_HOST_DEFAULT="sebastian@178.104.51.78"
+SSH_HOST_DEFAULT=""
 
 QUIET=0
 JSON=0
