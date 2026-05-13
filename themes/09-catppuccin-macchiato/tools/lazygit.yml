@@ -1,0 +1,23 @@
+# lazygit theme — symlinked to ~/.config/lazygit/theme.yml; include via LG_CONFIG_FILE
+gui:
+  theme:
+    lightTheme: false
+    activeBorderColor:
+      - "#c6a0f6"
+      - bold
+    inactiveBorderColor:
+      - "#5b6078"
+    optionsTextColor:
+      - "#8aadf4"
+    selectedLineBgColor:
+      - "#5b6078"
+    selectedRangeBgColor:
+      - "#5b6078"
+    cherryPickedCommitBgColor:
+      - "#c6a0f6"
+    cherryPickedCommitFgColor:
+      - "#24273a"
+    unstagedChangesColor:
+      - "#ed8796"
+    defaultFgColor:
+      - "#cad3f5"

@@ -1,0 +1,32 @@
+# alacritty theme: 96-hopscotch — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#322931"
+foreground = "#b9b5b8"
+
+[colors.cursor]
+text   = "#322931"
+cursor = "#fd8b19"
+
+[colors.selection]
+text       = "#b9b5b8"
+background = "#414868"
+
+[colors.normal]
+black   = "#322931"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#fd8b19"
+magenta = "#149b93"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#fd8b19"
+magenta = "#149b93"
+cyan    = "#7dcfff"
+white   = "#b9b5b8"

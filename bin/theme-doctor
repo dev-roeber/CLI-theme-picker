@@ -1,0 +1,387 @@
+#!/usr/bin/env bash
+# theme-doctor — diagnose the theme-picker installation
+set -euo pipefail
+
+TP_HOME="${TP_HOME:-$HOME/.config/theme-picker}"
+THEMES_DIR="$TP_HOME/themes"
+STATE="$TP_HOME/state/current-theme"
+BACKUP_ROOT="$TP_HOME/backups"
+FAV_FILE="$TP_HOME/state/favorites"
+BIN_DIR="$TP_HOME/bin"
+LOCAL_BIN="$HOME/.local/bin"
+
+SCRIPTS=(theme-apply theme-current theme-favorite theme-generate-all theme-list theme-picker theme-rollback theme-sync-server)
+REQ_TOOLS=(starship fzf bat tmux git curl jq rsync)
+OPT_TOOLS=(delta eza lsd lazygit btop nvim kitty ghostty alacritty)
+REQ_FILES=(starship.toml tmux.conf fzf.zsh bat.conf theme.env metadata.json)
+SYMLINKS=("$HOME/.config/starship.toml" "$HOME/.config/tmux/theme.conf" "$HOME/.config/fzf/theme.zsh" "$HOME/.config/bat/config")
+ZSHRC_MARKERS=("# >>> theme-picker path >>>" "# >>> theme-picker starship >>>" "# >>> theme-picker env >>>" "# >>> theme-picker fzf >>>")
+SSH_HOST_DEFAULT="sebastian@178.104.51.78"
+
+QUIET=0
+JSON=0
+for a in "$@"; do
+  case "$a" in
+    --quiet) QUIET=1 ;;
+    --json)  JSON=1 ;;
+    -h|--help) echo "Usage: theme-doctor [--quiet] [--json]"; exit 0 ;;
+  esac
+done
+
+if [[ -t 1 ]] && command -v tput >/dev/null 2>&1 && [[ $JSON -eq 0 ]]; then
+  RED=$(tput setaf 1); GREEN=$(tput setaf 2); YELLOW=$(tput setaf 3); BLUE=$(tput setaf 4); RESET=$(tput sgr0); BOLD=$(tput bold)
+else
+  RED=""; GREEN=""; YELLOW=""; BLUE=""; RESET=""; BOLD=""
+fi
+
+PASS_COUNT=0
+WARN_COUNT=0
+FAIL_COUNT=0
+JSON_ITEMS=()
+
+_emit_json() {
+  local status="$1" name="$2" msg="$3"
+  msg=${msg//\\/\\\\}
+  msg=${msg//\"/\\\"}
+  JSON_ITEMS+=("{\"check\":\"$name\",\"status\":\"$status\",\"message\":\"$msg\"}")
+}
+
+pass() {
+  local name="$1" msg="$2"
+  PASS_COUNT=$((PASS_COUNT+1))
+  if [[ $JSON -eq 1 ]]; then _emit_json pass "$name" "$msg"; return; fi
+  if [[ $QUIET -eq 1 ]]; then return; fi
+  printf "  [${GREEN}\xE2\x9C\x93${RESET}] %-14s %s\n" "$name" "$msg"
+}
+warn() {
+  local name="$1" msg="$2"
+  WARN_COUNT=$((WARN_COUNT+1))
+  if [[ $JSON -eq 1 ]]; then _emit_json warn "$name" "$msg"; return; fi
+  if [[ $QUIET -eq 1 ]]; then return; fi
+  printf "  [${YELLOW}\xE2\x9A\xA0${RESET}] %-14s %s\n" "$name" "$msg"
+}
+fail() {
+  local name="$1" msg="$2"
+  FAIL_COUNT=$((FAIL_COUNT+1))
+  if [[ $JSON -eq 1 ]]; then _emit_json fail "$name" "$msg"; return; fi
+  printf "  [${RED}\xE2\x9C\x97${RESET}] %-14s %s\n" "$name" "$msg"
+}
+section() {
+  [[ $JSON -eq 1 || $QUIET -eq 1 ]] && return
+  printf "\n${BOLD}%s${RESET}\n" "$1"
+}
+
+_tool_version() {
+  local t="$1" v=""
+  case "$t" in
+    starship) v=$(starship --version 2>/dev/null | head -1 | awk '{print $2}') ;;
+    fzf)      v=$(fzf --version 2>/dev/null | awk '{print $1}') ;;
+    bat)      v=$(bat --version 2>/dev/null | head -1 | awk '{print $2}') ;;
+    tmux)     v=$(tmux -V 2>/dev/null | awk '{print $2}') ;;
+    git)      v=$(git --version 2>/dev/null | awk '{print $3}') ;;
+    curl)     v=$(curl --version 2>/dev/null | head -1 | awk '{print $2}') ;;
+    jq)       v=$(jq --version 2>/dev/null | sed 's/jq-//') ;;
+    rsync)    v=$(rsync --version 2>/dev/null | head -1 | awk '{print $3}') ;;
+    *)        v=$("$t" --version 2>/dev/null | head -1 | awk '{print $NF}') ;;
+  esac
+  echo "${v:-?}"
+}
+
+check_tools() {
+  section "Required tools"
+  local missing=()
+  for t in "${REQ_TOOLS[@]}"; do
+    if command -v "$t" >/dev/null 2>&1; then
+      pass "tool:$t" "$(_tool_version "$t")"
+    else
+      fail "tool:$t" "missing — brew install $t"
+      missing+=("$t")
+    fi
+  done
+}
+
+check_optional_tools() {
+  section "Optional tools"
+  for t in "${OPT_TOOLS[@]}"; do
+    if command -v "$t" >/dev/null 2>&1; then
+      pass "opt:$t" "ok"
+    else
+      warn "opt:$t" "missing (optional)"
+    fi
+  done
+}
+
+check_scripts() {
+  section "Theme-picker scripts"
+  for s in "${SCRIPTS[@]}"; do
+    local p="$BIN_DIR/$s"
+    if [[ ! -f "$p" ]]; then
+      fail "script:$s" "missing at $p"; continue
+    fi
+    if [[ ! -x "$p" ]]; then
+      fail "script:$s" "not executable"; continue
+    fi
+    if bash -n "$p" 2>/dev/null; then
+      pass "script:$s" "ok + bash -n green"
+    else
+      fail "script:$s" "bash -n failed"
+    fi
+  done
+}
+
+check_symlinks_localbin() {
+  section "Symlinks in ~/.local/bin"
+  for s in "${SCRIPTS[@]}"; do
+    local link="$LOCAL_BIN/$s"
+    if [[ -L "$link" ]]; then
+      local tgt
+      tgt=$(readlink "$link")
+      if [[ -e "$link" ]]; then
+        pass "lnbin:$s" "-> $tgt"
+      else
+        fail "lnbin:$s" "broken -> $tgt"
+      fi
+    elif [[ -e "$link" ]]; then
+      fail "lnbin:$s" "exists but not a symlink"
+    else
+      fail "lnbin:$s" "missing"
+    fi
+  done
+}
+
+check_themes() {
+  section "Themes"
+  if [[ ! -d "$THEMES_DIR" ]]; then
+    fail "themes:dir" "missing: $THEMES_DIR"; return
+  fi
+  local count
+  count=$(find "$THEMES_DIR" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
+  pass "themes:count" "$count themes"
+  local broken=() i=0
+  while IFS= read -r d; do
+    local missing=()
+    for f in "${REQ_FILES[@]}"; do
+      [[ -f "$d/$f" ]] || missing+=("$f")
+    done
+    if (( ${#missing[@]} > 0 )); then
+      broken+=("$(basename "$d"): ${missing[*]}")
+    fi
+  done < <(find "$THEMES_DIR" -mindepth 1 -maxdepth 1 -type d)
+  if (( ${#broken[@]} == 0 )); then
+    pass "themes:files" "all themes have required files"
+  else
+    local list=""
+    for ((i=0; i<${#broken[@]} && i<5; i++)); do
+      list+="${broken[$i]}; "
+    done
+    fail "themes:files" "${#broken[@]} broken: $list"
+  fi
+}
+
+check_starship_validate() {
+  section "Starship validation"
+  local cfg="$HOME/.config/starship.toml"
+  if [[ ! -e "$cfg" ]]; then
+    fail "starship:cfg" "$cfg missing"; return
+  fi
+  if ! command -v starship >/dev/null 2>&1; then
+    warn "starship:cfg" "starship not installed"; return
+  fi
+  if STARSHIP_CONFIG="$cfg" starship prompt >/dev/null 2>&1; then
+    pass "starship:cfg" "renders ok"
+  else
+    fail "starship:cfg" "starship prompt failed"
+  fi
+}
+
+check_active_symlinks() {
+  section "Active symlinks"
+  for l in "${SYMLINKS[@]}"; do
+    local name=${l/#$HOME/\~}
+    if [[ -L "$l" ]]; then
+      if [[ -e "$l" ]]; then
+        pass "link:$name" "-> $(readlink "$l")"
+      else
+        fail "link:$name" "broken symlink"
+      fi
+    elif [[ -f "$l" ]]; then
+      warn "link:$name" "regular file (run theme-apply)"
+    else
+      fail "link:$name" "missing"
+    fi
+  done
+}
+
+check_zshrc_markers() {
+  section "zshrc markers"
+  local rc="$HOME/.zshrc"
+  if [[ ! -f "$rc" ]]; then
+    warn "zshrc" "no ~/.zshrc"; return
+  fi
+  local missing=()
+  for m in "${ZSHRC_MARKERS[@]}"; do
+    grep -qF "$m" "$rc" || missing+=("$m")
+  done
+  if (( ${#missing[@]} == 0 )); then
+    pass "zshrc" "all 4 marker blocks present"
+  else
+    warn "zshrc" "${#missing[@]} marker(s) missing: ${missing[*]}"
+  fi
+}
+
+check_state() {
+  section "Current theme state"
+  if [[ ! -f "$STATE" ]]; then
+    warn "state" "no theme set"; return
+  fi
+  local cur
+  cur=$(tr -d '[:space:]' < "$STATE")
+  if [[ -z "$cur" ]]; then
+    warn "state" "empty"; return
+  fi
+  if [[ -d "$THEMES_DIR/$cur" ]]; then
+    pass "state" "$cur"
+  else
+    fail "state" "$cur does not exist in $THEMES_DIR"
+  fi
+}
+
+check_backups() {
+  section "Backups"
+  if [[ ! -d "$BACKUP_ROOT" ]]; then
+    warn "backups" "no backup dir"; return
+  fi
+  local count
+  count=$(find "$BACKUP_ROOT" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
+  local biggest
+  biggest=$(du -sh "$BACKUP_ROOT"/*/ 2>/dev/null | sort -h | tail -1 || true)
+  if (( count > 50 )); then
+    warn "backups" "$count entries (consider theme-clean); biggest: ${biggest:-n/a}"
+  else
+    pass "backups" "$count entries; biggest: ${biggest:-n/a}"
+  fi
+}
+
+check_osc() {
+  section "Terminal OSC"
+  if [[ -n "${THEME_PICKER_NO_OSC:-}" ]]; then
+    warn "osc" "disabled via THEME_PICKER_NO_OSC"; return
+  fi
+  local tp="${TERM_PROGRAM:-}"
+  case "$tp" in
+    iTerm.app|ghostty|kitty|WezTerm|Alacritty|Apple_Terminal)
+      pass "osc" "$tp (known good)" ;;
+    "")
+      warn "osc" "TERM_PROGRAM unset — uncertain" ;;
+    *)
+      warn "osc" "unknown terminal: $tp" ;;
+  esac
+}
+
+check_nerd_font() {
+  section "Nerd Font"
+  local found=""
+  if command -v fc-list >/dev/null 2>&1; then
+    found=$(fc-list 2>/dev/null | grep -iE "nerd|jetbrains.*nerd" | head -1 || true)
+  fi
+  if [[ -z "$found" ]]; then
+    found=$( { ls "$HOME/Library/Fonts" 2>/dev/null; ls /Library/Fonts 2>/dev/null; } | grep -i nerd | head -1 || true)
+  fi
+  if [[ -n "$found" ]]; then
+    pass "font" "nerd font detected ($found)"
+  else
+    warn "font" "no nerd font — brew install --cask font-jetbrains-mono-nerd-font"
+  fi
+}
+
+check_ssh() {
+  section "SSH reachability"
+  local host="${THEME_PICKER_SSH_HOST:-$SSH_HOST_DEFAULT}"
+  if [[ -z "$host" ]]; then
+    warn "ssh" "no host configured"; return
+  fi
+  if ssh -o ConnectTimeout=3 -o BatchMode=yes "$host" true 2>/dev/null; then
+    pass "ssh" "$host reachable"
+    SSH_OK=1
+    SSH_HOST_USED="$host"
+  else
+    warn "ssh" "$host not reachable (non-critical)"
+    SSH_OK=0
+  fi
+}
+
+check_favorites() {
+  section "Favorites"
+  if [[ ! -f "$FAV_FILE" ]]; then
+    pass "favorites" "no favorites file (ok)"; return
+  fi
+  local total stale=()
+  total=$(grep -cve '^[[:space:]]*$' "$FAV_FILE" 2>/dev/null || echo 0)
+  while IFS= read -r line; do
+    [[ -z "$line" ]] && continue
+    [[ -d "$THEMES_DIR/$line" ]] || stale+=("$line")
+  done < "$FAV_FILE"
+  if (( ${#stale[@]} == 0 )); then
+    pass "favorites" "$total favorites, all valid"
+  else
+    warn "favorites" "$total favorites, ${#stale[@]} stale: ${stale[*]}"
+  fi
+}
+
+check_drift() {
+  section "Local vs server drift"
+  if [[ "${SSH_OK:-0}" != "1" ]]; then
+    warn "drift" "skipped (ssh unreachable)"; return
+  fi
+  local local_n remote_n
+  local_n=$(find "$THEMES_DIR" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l | tr -d ' ')
+  remote_n=$(ssh -o ConnectTimeout=3 -o BatchMode=yes "$SSH_HOST_USED" \
+    "ls -1d \"$THEMES_DIR\"/*/ 2>/dev/null | wc -l" 2>/dev/null | tr -d ' ' || echo "?")
+  if [[ "$local_n" == "$remote_n" ]]; then
+    pass "drift" "identical ($local_n themes)"
+  else
+    warn "drift" "local=$local_n remote=$remote_n"
+  fi
+}
+
+main() {
+  SSH_OK=0
+  SSH_HOST_USED=""
+  check_tools
+  check_optional_tools
+  check_scripts
+  check_symlinks_localbin
+  check_themes
+  check_starship_validate
+  check_active_symlinks
+  check_zshrc_markers
+  check_state
+  check_backups
+  check_osc
+  check_nerd_font
+  check_ssh
+  check_favorites
+  check_drift
+
+  local overall="OK"
+  local code=0
+  if (( FAIL_COUNT > 0 )); then overall="FAIL"; code=1
+  elif (( WARN_COUNT > 0 )); then overall="WARN"; code=2
+  fi
+
+  if [[ $JSON -eq 1 ]]; then
+    local items
+    items=$(IFS=,; echo "${JSON_ITEMS[*]}")
+    printf '{"passed":%d,"warnings":%d,"errors":%d,"overall":"%s","checks":[%s]}\n' \
+      "$PASS_COUNT" "$WARN_COUNT" "$FAIL_COUNT" "$overall" "$items"
+  else
+    local color="$GREEN"
+    [[ "$overall" == "WARN" ]] && color="$YELLOW"
+    [[ "$overall" == "FAIL" ]] && color="$RED"
+    printf "\n${BOLD}Summary:${RESET} %d passed, %d warnings, %d errors. Overall: %s%s%s\n" \
+      "$PASS_COUNT" "$WARN_COUNT" "$FAIL_COUNT" "$color" "$overall" "$RESET"
+  fi
+  exit "$code"
+}
+
+main "$@"

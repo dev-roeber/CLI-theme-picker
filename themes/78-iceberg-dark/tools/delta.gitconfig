@@ -1,0 +1,15 @@
+# delta theme — included via [include] path = ~/.config/theme-picker/active/delta.gitconfig
+[delta]
+  syntax-theme = TwoDark
+  line-numbers = true
+  navigate = true
+  side-by-side = false
+  file-style = "#84a0c6 bold"
+  hunk-header-decoration-style = "#84a0c6 ul"
+  file-decoration-style = "#84a0c6"
+  minus-style = "syntax #e2787833"
+  minus-emph-style = "syntax #e2787855"
+  plus-style = "syntax #b4be8233"
+  plus-emph-style = "syntax #b4be8255"
+  zero-style = "syntax"
+  whitespace-error-style = "#e27878 reverse"

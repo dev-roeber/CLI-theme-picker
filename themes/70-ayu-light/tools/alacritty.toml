@@ -1,0 +1,32 @@
+# alacritty theme: 70-ayu-light — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#fafafa"
+foreground = "#5c6773"
+
+[colors.cursor]
+text   = "#fafafa"
+cursor = "#ff9940"
+
+[colors.selection]
+text       = "#5c6773"
+background = "#828c99"
+
+[colors.normal]
+black   = "#000000"
+red     = "#f0533a"
+green   = "#5e9700"
+yellow  = "#f29718"
+blue    = "#41a6d9"
+magenta = "#9d57d3"
+cyan    = "#4dbf99"
+white   = "#5c6773"
+
+[colors.bright]
+black   = "#828c99"
+red     = "#f0533a"
+green   = "#5e9700"
+yellow  = "#f29718"
+blue    = "#41a6d9"
+magenta = "#9d57d3"
+cyan    = "#4dbf99"
+white   = "#000000"

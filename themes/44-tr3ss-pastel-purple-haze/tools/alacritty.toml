@@ -1,0 +1,32 @@
+# alacritty theme: 44-tr3ss-pastel-purple-haze — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
+[colors.cursor]
+text   = "#1e1e2e"
+cursor = "#c4a7e7"
+
+[colors.selection]
+text       = "#cdd6f4"
+background = "#414868"
+
+[colors.normal]
+black   = "#1e1e2e"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#c4a7e7"
+magenta = "#7e6e9c"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#c4a7e7"
+magenta = "#7e6e9c"
+cyan    = "#7dcfff"
+white   = "#cdd6f4"

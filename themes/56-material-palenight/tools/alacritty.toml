@@ -1,0 +1,32 @@
+# alacritty theme: 56-material-palenight — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#292d3e"
+foreground = "#a6accd"
+
+[colors.cursor]
+text   = "#292d3e"
+cursor = "#c792ea"
+
+[colors.selection]
+text       = "#a6accd"
+background = "#414868"
+
+[colors.normal]
+black   = "#292d3e"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#c792ea"
+magenta = "#82aaff"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#c792ea"
+magenta = "#82aaff"
+cyan    = "#7dcfff"
+white   = "#a6accd"

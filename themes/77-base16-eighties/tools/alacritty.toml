@@ -1,0 +1,32 @@
+# alacritty theme: 77-base16-eighties — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#2d2d2d"
+foreground = "#d3d0c8"
+
+[colors.cursor]
+text   = "#2d2d2d"
+cursor = "#6699cc"
+
+[colors.selection]
+text       = "#d3d0c8"
+background = "#414868"
+
+[colors.normal]
+black   = "#2d2d2d"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#6699cc"
+magenta = "#f99157"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#6699cc"
+magenta = "#f99157"
+cyan    = "#7dcfff"
+white   = "#d3d0c8"

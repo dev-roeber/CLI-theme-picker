@@ -1,0 +1,32 @@
+# alacritty theme: 28-nord-powerline — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#2e3440"
+foreground = "#eceff4"
+
+[colors.cursor]
+text   = "#2e3440"
+cursor = "#88c0d0"
+
+[colors.selection]
+text       = "#eceff4"
+background = "#414868"
+
+[colors.normal]
+black   = "#2e3440"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#88c0d0"
+magenta = "#81a1c1"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#88c0d0"
+magenta = "#81a1c1"
+cyan    = "#7dcfff"
+white   = "#eceff4"

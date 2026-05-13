@@ -1,0 +1,32 @@
+# alacritty theme: 86-elementary-luna — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#1d1f21"
+foreground = "#c5c8c6"
+
+[colors.cursor]
+text   = "#1d1f21"
+cursor = "#3b81d8"
+
+[colors.selection]
+text       = "#c5c8c6"
+background = "#414868"
+
+[colors.normal]
+black   = "#1d1f21"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#3b81d8"
+magenta = "#68b723"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#3b81d8"
+magenta = "#68b723"
+cyan    = "#7dcfff"
+white   = "#c5c8c6"

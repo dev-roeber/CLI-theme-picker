@@ -1,0 +1,32 @@
+# alacritty theme: 58-shades-of-purple — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#2d2b55"
+foreground = "#ffffff"
+
+[colors.cursor]
+text   = "#2d2b55"
+cursor = "#a599e9"
+
+[colors.selection]
+text       = "#ffffff"
+background = "#414868"
+
+[colors.normal]
+black   = "#2d2b55"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#a599e9"
+magenta = "#fad000"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#a599e9"
+magenta = "#fad000"
+cyan    = "#7dcfff"
+white   = "#ffffff"

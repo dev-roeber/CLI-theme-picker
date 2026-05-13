@@ -1,0 +1,32 @@
+# alacritty theme: 100-poimandres — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#1b1e28"
+foreground = "#a6accd"
+
+[colors.cursor]
+text   = "#1b1e28"
+cursor = "#5de4c7"
+
+[colors.selection]
+text       = "#a6accd"
+background = "#414868"
+
+[colors.normal]
+black   = "#1b1e28"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#5de4c7"
+magenta = "#add7ff"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#5de4c7"
+magenta = "#add7ff"
+cyan    = "#7dcfff"
+white   = "#a6accd"

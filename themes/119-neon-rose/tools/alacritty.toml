@@ -1,0 +1,32 @@
+# alacritty theme: 119-neon-rose — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#14000a"
+foreground = "#ff007f"
+
+[colors.cursor]
+text   = "#14000a"
+cursor = "#ff66cc"
+
+[colors.selection]
+text       = "#ff007f"
+background = "#414868"
+
+[colors.normal]
+black   = "#14000a"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff66cc"
+magenta = "#ff1493"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff66cc"
+magenta = "#ff1493"
+cyan    = "#7dcfff"
+white   = "#ff007f"

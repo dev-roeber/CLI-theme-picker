@@ -1,0 +1,32 @@
+# alacritty theme: 94-twilight — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#141414"
+foreground = "#e0e0e0"
+
+[colors.cursor]
+text   = "#141414"
+cursor = "#ce6700"
+
+[colors.selection]
+text       = "#e0e0e0"
+background = "#414868"
+
+[colors.normal]
+black   = "#141414"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ce6700"
+magenta = "#9b859d"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ce6700"
+magenta = "#9b859d"
+cyan    = "#7dcfff"
+white   = "#e0e0e0"

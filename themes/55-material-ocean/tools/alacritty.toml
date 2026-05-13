@@ -1,0 +1,32 @@
+# alacritty theme: 55-material-ocean — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#0f111a"
+foreground = "#a6accd"
+
+[colors.cursor]
+text   = "#0f111a"
+cursor = "#80cbc4"
+
+[colors.selection]
+text       = "#a6accd"
+background = "#414868"
+
+[colors.normal]
+black   = "#0f111a"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#80cbc4"
+magenta = "#82aaff"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#80cbc4"
+magenta = "#82aaff"
+cyan    = "#7dcfff"
+white   = "#a6accd"

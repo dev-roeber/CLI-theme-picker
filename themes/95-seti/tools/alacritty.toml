@@ -1,0 +1,32 @@
+# alacritty theme: 95-seti — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#151718"
+foreground = "#cfd2d1"
+
+[colors.cursor]
+text   = "#151718"
+cursor = "#55b5db"
+
+[colors.selection]
+text       = "#cfd2d1"
+background = "#414868"
+
+[colors.normal]
+black   = "#151718"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#55b5db"
+magenta = "#9fca56"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#55b5db"
+magenta = "#9fca56"
+cyan    = "#7dcfff"
+white   = "#cfd2d1"

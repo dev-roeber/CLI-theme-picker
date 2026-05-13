@@ -1,0 +1,32 @@
+# alacritty theme: 54-material-darker — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#212121"
+foreground = "#eeffff"
+
+[colors.cursor]
+text   = "#212121"
+cursor = "#82aaff"
+
+[colors.selection]
+text       = "#eeffff"
+background = "#414868"
+
+[colors.normal]
+black   = "#212121"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#82aaff"
+magenta = "#c792ea"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#82aaff"
+magenta = "#c792ea"
+cyan    = "#7dcfff"
+white   = "#eeffff"

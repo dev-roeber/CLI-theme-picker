@@ -1,0 +1,32 @@
+# alacritty theme: 105-neon-orange — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#140a00"
+foreground = "#ff7f00"
+
+[colors.cursor]
+text   = "#140a00"
+cursor = "#ff6700"
+
+[colors.selection]
+text       = "#ff7f00"
+background = "#414868"
+
+[colors.normal]
+black   = "#140a00"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff6700"
+magenta = "#ff4500"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff6700"
+magenta = "#ff4500"
+cyan    = "#7dcfff"
+white   = "#ff7f00"

@@ -1,0 +1,15 @@
+# delta theme — included via [include] path = ~/.config/theme-picker/active/delta.gitconfig
+[delta]
+  syntax-theme = Coldark-Dark
+  line-numbers = true
+  navigate = true
+  side-by-side = false
+  file-style = "#ff6188 bold"
+  hunk-header-decoration-style = "#ff6188 ul"
+  file-decoration-style = "#ff6188"
+  minus-style = "syntax #ff618833"
+  minus-emph-style = "syntax #ff618855"
+  plus-style = "syntax #a9dc7633"
+  plus-emph-style = "syntax #a9dc7655"
+  zero-style = "syntax"
+  whitespace-error-style = "#ff6188 reverse"

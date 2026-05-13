@@ -145,3 +145,16 @@ werden nicht erneut gesichert.
 | `~/.config/tmux/theme.conf`                     | Symlink → aktiver Theme             |
 | `~/.config/fzf/theme.zsh`                       | Symlink → aktiver Theme             |
 | `~/.config/bat/config`                          | Symlink → aktiver Theme             |
+
+## Entwicklung
+
+Das Repo enthaelt einen pre-commit Hook unter `.githooks/`, der bei jedem Commit:
+- alle modifizierten `starship.toml` Dateien gegen `starship prompt` testet
+- alle `metadata.json` Dateien gegen das erwartete Schema validiert
+- Slug- und Rank-Eindeutigkeit prueft
+
+Aktivieren mit:
+
+```bash
+git config core.hooksPath .githooks
+```

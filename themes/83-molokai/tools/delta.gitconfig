@@ -1,0 +1,15 @@
+# delta theme — included via [include] path = ~/.config/theme-picker/active/delta.gitconfig
+[delta]
+  syntax-theme = Monokai Extended
+  line-numbers = true
+  navigate = true
+  side-by-side = false
+  file-style = "#f92672 bold"
+  hunk-header-decoration-style = "#f92672 ul"
+  file-decoration-style = "#f92672"
+  minus-style = "syntax #f9267233"
+  minus-emph-style = "syntax #f9267255"
+  plus-style = "syntax #a6e22e33"
+  plus-emph-style = "syntax #a6e22e55"
+  zero-style = "syntax"
+  whitespace-error-style = "#f92672 reverse"

@@ -1,0 +1,32 @@
+# alacritty theme: 42-tr3ss-viking — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#1c1f2b"
+foreground = "#cad3f5"
+
+[colors.cursor]
+text   = "#1c1f2b"
+cursor = "#7287fd"
+
+[colors.selection]
+text       = "#cad3f5"
+background = "#414868"
+
+[colors.normal]
+black   = "#1c1f2b"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7287fd"
+magenta = "#4c5491"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7287fd"
+magenta = "#4c5491"
+cyan    = "#7dcfff"
+white   = "#cad3f5"

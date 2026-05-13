@@ -1,0 +1,32 @@
+# alacritty theme: 93-bluloco-light — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#f9f9f9"
+foreground = "#383a42"
+
+[colors.cursor]
+text   = "#f9f9f9"
+cursor = "#0098dd"
+
+[colors.selection]
+text       = "#383a42"
+background = "#414868"
+
+[colors.normal]
+black   = "#f9f9f9"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#0098dd"
+magenta = "#23974a"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#0098dd"
+magenta = "#23974a"
+cyan    = "#7dcfff"
+white   = "#383a42"

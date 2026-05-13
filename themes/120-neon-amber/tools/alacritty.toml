@@ -1,0 +1,32 @@
+# alacritty theme: 120-neon-amber — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#140800"
+foreground = "#ff8c00"
+
+[colors.cursor]
+text   = "#140800"
+cursor = "#ffbf00"
+
+[colors.selection]
+text       = "#ff8c00"
+background = "#414868"
+
+[colors.normal]
+black   = "#140800"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ffbf00"
+magenta = "#ffaa00"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ffbf00"
+magenta = "#ffaa00"
+cyan    = "#7dcfff"
+white   = "#ff8c00"

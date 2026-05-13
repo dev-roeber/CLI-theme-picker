@@ -1,0 +1,32 @@
+# alacritty theme: 27-everforest-dark-soft — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#333c43"
+foreground = "#d3c6aa"
+
+[colors.cursor]
+text   = "#333c43"
+cursor = "#7fbbb3"
+
+[colors.selection]
+text       = "#d3c6aa"
+background = "#475258"
+
+[colors.normal]
+black   = "#414b50"
+red     = "#e67e80"
+green   = "#a7c080"
+yellow  = "#dbbc7f"
+blue    = "#7fbbb3"
+magenta = "#d699b6"
+cyan    = "#83c092"
+white   = "#d3c6aa"
+
+[colors.bright]
+black   = "#475258"
+red     = "#e67e80"
+green   = "#a7c080"
+yellow  = "#dbbc7f"
+blue    = "#7fbbb3"
+magenta = "#d699b6"
+cyan    = "#83c092"
+white   = "#d3c6aa"

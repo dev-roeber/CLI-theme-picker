@@ -1,0 +1,32 @@
+# alacritty theme: 73-kanagawa-lotus — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#f2ecbc"
+foreground = "#545464"
+
+[colors.cursor]
+text   = "#f2ecbc"
+cursor = "#4d699b"
+
+[colors.selection]
+text       = "#545464"
+background = "#414868"
+
+[colors.normal]
+black   = "#f2ecbc"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#4d699b"
+magenta = "#b35b79"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#4d699b"
+magenta = "#b35b79"
+cyan    = "#7dcfff"
+white   = "#545464"

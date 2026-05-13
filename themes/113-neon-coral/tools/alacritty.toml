@@ -1,0 +1,32 @@
+# alacritty theme: 113-neon-coral — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#140505"
+foreground = "#ff6f61"
+
+[colors.cursor]
+text   = "#140505"
+cursor = "#ff7f50"
+
+[colors.selection]
+text       = "#ff6f61"
+background = "#414868"
+
+[colors.normal]
+black   = "#140505"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff7f50"
+magenta = "#ff4040"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff7f50"
+magenta = "#ff4040"
+cyan    = "#7dcfff"
+white   = "#ff6f61"

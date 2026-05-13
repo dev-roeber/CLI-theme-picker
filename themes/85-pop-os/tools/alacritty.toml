@@ -1,0 +1,32 @@
+# alacritty theme: 85-pop-os — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#1a1a1a"
+foreground = "#cccccc"
+
+[colors.cursor]
+text   = "#1a1a1a"
+cursor = "#48b9c7"
+
+[colors.selection]
+text       = "#cccccc"
+background = "#414868"
+
+[colors.normal]
+black   = "#1a1a1a"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#48b9c7"
+magenta = "#faa41a"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#48b9c7"
+magenta = "#faa41a"
+cyan    = "#7dcfff"
+white   = "#cccccc"

@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+RED=$'\033[0;31m'
+GREEN=$'\033[0;32m'
+YELLOW=$'\033[0;33m'
+RESET=$'\033[0m'
+
+fail() {
+    echo "${RED}FAIL: $*${RESET}" >&2
+    exit 1
+}
+
+warn() {
+    echo "${YELLOW}WARN: $*${RESET}" >&2
+}
+
+# Collect staged files
+mapfile -t STAGED < <(git diff --cached --name-only --diff-filter=ACM)
+
+STARSHIP_FILES=()
+METADATA_FILES=()
+TMUX_FILES=()
+
+for f in "${STAGED[@]}"; do
+    case "$f" in
+        *starship.toml) STARSHIP_FILES+=("$f") ;;
+        *metadata.json) METADATA_FILES+=("$f") ;;
+        *tmux.conf)     TMUX_FILES+=("$f") ;;
+    esac
+done
+
+TOTAL=$(( ${#STARSHIP_FILES[@]} + ${#METADATA_FILES[@]} + ${#TMUX_FILES[@]} ))
+
+if [ "$TOTAL" -eq 0 ]; then
+    echo "${GREEN}pre-commit: no theme files staged, skipping${RESET}"
+    exit 0
+fi
+
+# --- starship.toml validation ---
+if [ "${#STARSHIP_FILES[@]}" -gt 0 ]; then
+    if ! command -v starship >/dev/null 2>&1; then
+        fail "starship binary not found in PATH but starship.toml files are staged"
+    fi
+    for f in "${STARSHIP_FILES[@]}"; do
+        # Validate the staged content (not necessarily the working-tree copy)
+        tmpfile=$(mktemp -t starship-validate.XXXXXX)
+        # shellcheck disable=SC2064
+        trap "rm -f '$tmpfile'" EXIT
+        if ! git show ":$f" > "$tmpfile" 2>/dev/null; then
+            rm -f "$tmpfile"
+            fail "$f - unable to read staged content"
+        fi
+        stderr_out=$(STARSHIP_CONFIG="$tmpfile" starship prompt 2>&1 >/dev/null) || {
+            status=$?
+            rm -f "$tmpfile"
+            fail "$f - starship prompt exited with status $status"
+        }
+        # starship logs config errors to stderr but still exits 0 - detect them
+        if echo "$stderr_out" | grep -qE 'ERROR.*config|Unable to parse'; then
+            rm -f "$tmpfile"
+            fail "$f - starship config parse error:"$'\n'"$stderr_out"
+        fi
+        rm -f "$tmpfile"
+        trap - EXIT
+    done
+fi
+
+# --- metadata.json validation ---
+if [ "${#METADATA_FILES[@]}" -gt 0 ]; then
+    if ! command -v jq >/dev/null 2>&1; then
+        fail "jq binary not found in PATH but metadata.json files are staged"
+    fi
+    for f in "${METADATA_FILES[@]}"; do
+        content=$(git show ":$f" 2>/dev/null) || fail "$f - unable to read staged content"
+        if ! echo "$content" | jq -e '.name and .slug and (.rank|type=="number") and .category and (.nerd_font_required|type=="boolean") and .recommended_for' >/dev/null 2>&1; then
+            fail "$f - metadata.json missing required fields or wrong types (need: name, slug, rank:number, category, nerd_font_required:bool, recommended_for)"
+        fi
+    done
+
+    # Uniqueness across staged + already-committed metadata files
+    declare -A SLUG_SEEN
+    declare -A RANK_SEEN
+
+    # Build list of all metadata.json files (committed in HEAD + staged)
+    ALL_META=()
+    if git rev-parse --verify HEAD >/dev/null 2>&1; then
+        while IFS= read -r m; do
+            ALL_META+=("$m")
+        done < <(git ls-tree -r --name-only HEAD | grep -E '(^|/)metadata\.json$' || true)
+    fi
+    for m in "${METADATA_FILES[@]}"; do
+        ALL_META+=("$m")
+    done
+
+    # De-duplicate (staged file overrides HEAD version naturally — we read via index for staged)
+    declare -A SEEN_PATH
+    UNIQUE_META=()
+    for m in "${ALL_META[@]}"; do
+        if [ -z "${SEEN_PATH[$m]:-}" ]; then
+            SEEN_PATH[$m]=1
+            UNIQUE_META+=("$m")
+        fi
+    done
+
+    for m in "${UNIQUE_META[@]}"; do
+        # Prefer staged version if present, else HEAD
+        if printf '%s\n' "${METADATA_FILES[@]}" | grep -Fxq "$m"; then
+            content=$(git show ":$m" 2>/dev/null) || continue
+        else
+            content=$(git show "HEAD:$m" 2>/dev/null) || continue
+        fi
+        slug=$(echo "$content" | jq -r '.slug')
+        rank=$(echo "$content" | jq -r '.rank')
+
+        if [ -n "${SLUG_SEEN[$slug]:-}" ]; then
+            fail "$m - duplicate slug '$slug' (also in ${SLUG_SEEN[$slug]})"
+        fi
+        SLUG_SEEN[$slug]="$m"
+
+        if [ -n "${RANK_SEEN[$rank]:-}" ]; then
+            fail "$m - duplicate rank '$rank' (also in ${RANK_SEEN[$rank]})"
+        fi
+        RANK_SEEN[$rank]="$m"
+    done
+fi
+
+# --- tmux.conf validation ---
+if [ "${#TMUX_FILES[@]}" -gt 0 ]; then
+    if ! command -v tmux >/dev/null 2>&1; then
+        warn "tmux not installed - skipping tmux.conf checks"
+    else
+        for f in "${TMUX_FILES[@]}"; do
+            content=$(git show ":$f" 2>/dev/null) || fail "$f - unable to read staged content"
+            line_count=$(printf '%s\n' "$content" | wc -l | tr -d ' ')
+            if [ "$line_count" -lt 5 ]; then
+                fail "$f - tmux.conf has fewer than 5 lines ($line_count)"
+            fi
+            # Reject obviously broken content (NUL bytes, binary)
+            if printf '%s' "$content" | LC_ALL=C grep -q $'\x00'; then
+                fail "$f - tmux.conf contains NUL bytes"
+            fi
+        done
+    fi
+fi
+
+echo "${GREEN}pre-commit checks passed ($TOTAL files)${RESET}"
+exit 0

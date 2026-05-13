@@ -1,0 +1,32 @@
+# alacritty theme: 82-zenburn — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#3f3f3f"
+foreground = "#dcdccc"
+
+[colors.cursor]
+text   = "#3f3f3f"
+cursor = "#dca3a3"
+
+[colors.selection]
+text       = "#dcdccc"
+background = "#414868"
+
+[colors.normal]
+black   = "#3f3f3f"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#dca3a3"
+magenta = "#f0dfaf"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#dca3a3"
+magenta = "#f0dfaf"
+cyan    = "#7dcfff"
+white   = "#dcdccc"

@@ -1,0 +1,32 @@
+# alacritty theme: 41-tr3ss-starshiplevel10k — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#1a1a1a"
+foreground = "#ffffff"
+
+[colors.cursor]
+text   = "#1a1a1a"
+cursor = "#5fafd7"
+
+[colors.selection]
+text       = "#ffffff"
+background = "#414868"
+
+[colors.normal]
+black   = "#1a1a1a"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#5fafd7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#5fafd7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#ffffff"

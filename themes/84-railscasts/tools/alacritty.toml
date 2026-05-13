@@ -1,0 +1,32 @@
+# alacritty theme: 84-railscasts — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#2b2b2b"
+foreground = "#e6e1dc"
+
+[colors.cursor]
+text   = "#2b2b2b"
+cursor = "#cc7833"
+
+[colors.selection]
+text       = "#e6e1dc"
+background = "#414868"
+
+[colors.normal]
+black   = "#2b2b2b"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#cc7833"
+magenta = "#a5c261"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#cc7833"
+magenta = "#a5c261"
+cyan    = "#7dcfff"
+white   = "#e6e1dc"

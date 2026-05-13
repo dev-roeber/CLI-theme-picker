@@ -1,0 +1,32 @@
+# alacritty theme: 47-wintermi-zsh-starship-powerline — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#1d2021"
+foreground = "#ebdbb2"
+
+[colors.cursor]
+text   = "#1d2021"
+cursor = "#458588"
+
+[colors.selection]
+text       = "#ebdbb2"
+background = "#414868"
+
+[colors.normal]
+black   = "#1d2021"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#458588"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#458588"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#ebdbb2"

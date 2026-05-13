@@ -1,0 +1,32 @@
+# alacritty theme: 102-neon-cyan — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#001414"
+foreground = "#00ffff"
+
+[colors.cursor]
+text   = "#001414"
+cursor = "#00f5ff"
+
+[colors.selection]
+text       = "#00ffff"
+background = "#414868"
+
+[colors.normal]
+black   = "#001414"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#00f5ff"
+magenta = "#0080ff"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#00f5ff"
+magenta = "#0080ff"
+cyan    = "#7dcfff"
+white   = "#00ffff"

@@ -1,0 +1,32 @@
+# alacritty theme: 88-laserwave — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#27212e"
+foreground = "#ffffff"
+
+[colors.cursor]
+text   = "#27212e"
+cursor = "#ff52bf"
+
+[colors.selection]
+text       = "#ffffff"
+background = "#414868"
+
+[colors.normal]
+black   = "#27212e"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff52bf"
+magenta = "#eb64b9"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff52bf"
+magenta = "#eb64b9"
+cyan    = "#7dcfff"
+white   = "#ffffff"

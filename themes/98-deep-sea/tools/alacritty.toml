@@ -1,0 +1,32 @@
+# alacritty theme: 98-deep-sea — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#0a192f"
+foreground = "#8892b0"
+
+[colors.cursor]
+text   = "#0a192f"
+cursor = "#64ffda"
+
+[colors.selection]
+text       = "#8892b0"
+background = "#414868"
+
+[colors.normal]
+black   = "#0a192f"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#64ffda"
+magenta = "#ccd6f6"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#64ffda"
+magenta = "#ccd6f6"
+cyan    = "#7dcfff"
+white   = "#8892b0"

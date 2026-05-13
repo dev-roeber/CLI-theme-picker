@@ -1,0 +1,32 @@
+# alacritty theme: 66-vscode-light-plus — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#ffffff"
+foreground = "#000000"
+
+[colors.cursor]
+text   = "#ffffff"
+cursor = "#0451a5"
+
+[colors.selection]
+text       = "#000000"
+background = "#414868"
+
+[colors.normal]
+black   = "#ffffff"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#0451a5"
+magenta = "#af00db"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#0451a5"
+magenta = "#af00db"
+cyan    = "#7dcfff"
+white   = "#000000"

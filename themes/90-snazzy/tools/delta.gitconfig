@@ -1,0 +1,15 @@
+# delta theme — included via [include] path = ~/.config/theme-picker/active/delta.gitconfig
+[delta]
+  syntax-theme = Dracula
+  line-numbers = true
+  navigate = true
+  side-by-side = false
+  file-style = "#ff6ac1 bold"
+  hunk-header-decoration-style = "#ff6ac1 ul"
+  file-decoration-style = "#ff6ac1"
+  minus-style = "syntax #fc434633"
+  minus-emph-style = "syntax #fc434655"
+  plus-style = "syntax #50fb7c33"
+  plus-emph-style = "syntax #50fb7c55"
+  zero-style = "syntax"
+  whitespace-error-style = "#fc4346 reverse"

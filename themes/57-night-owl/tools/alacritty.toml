@@ -1,0 +1,32 @@
+# alacritty theme: 57-night-owl — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#011627"
+foreground = "#d6deeb"
+
+[colors.cursor]
+text   = "#011627"
+cursor = "#82aaff"
+
+[colors.selection]
+text       = "#d6deeb"
+background = "#414868"
+
+[colors.normal]
+black   = "#011627"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#82aaff"
+magenta = "#addb67"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#82aaff"
+magenta = "#addb67"
+cyan    = "#7dcfff"
+white   = "#d6deeb"

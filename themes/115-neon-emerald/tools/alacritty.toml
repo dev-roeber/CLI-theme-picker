@@ -1,0 +1,32 @@
+# alacritty theme: 115-neon-emerald — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#001408"
+foreground = "#00ff7f"
+
+[colors.cursor]
+text   = "#001408"
+cursor = "#50c878"
+
+[colors.selection]
+text       = "#00ff7f"
+background = "#414868"
+
+[colors.normal]
+black   = "#001408"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#50c878"
+magenta = "#39ff14"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#50c878"
+magenta = "#39ff14"
+cyan    = "#7dcfff"
+white   = "#00ff7f"

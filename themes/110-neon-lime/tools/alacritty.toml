@@ -1,0 +1,32 @@
+# alacritty theme: 110-neon-lime — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#0a1400"
+foreground = "#ccff00"
+
+[colors.cursor]
+text   = "#0a1400"
+cursor = "#bfff00"
+
+[colors.selection]
+text       = "#ccff00"
+background = "#414868"
+
+[colors.normal]
+black   = "#0a1400"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#bfff00"
+magenta = "#aaff00"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#bfff00"
+magenta = "#aaff00"
+cyan    = "#7dcfff"
+white   = "#ccff00"

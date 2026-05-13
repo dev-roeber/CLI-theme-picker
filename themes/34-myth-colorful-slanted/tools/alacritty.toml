@@ -1,0 +1,32 @@
+# alacritty theme: 34-myth-colorful-slanted — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#1e1e2e"
+foreground = "#f5e0dc"
+
+[colors.cursor]
+text   = "#1e1e2e"
+cursor = "#fab387"
+
+[colors.selection]
+text       = "#f5e0dc"
+background = "#414868"
+
+[colors.normal]
+black   = "#1e1e2e"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#fab387"
+magenta = "#89dceb"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#fab387"
+magenta = "#89dceb"
+cyan    = "#7dcfff"
+white   = "#f5e0dc"

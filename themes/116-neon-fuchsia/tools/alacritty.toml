@@ -1,0 +1,32 @@
+# alacritty theme: 116-neon-fuchsia — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#14000d"
+foreground = "#ff77ff"
+
+[colors.cursor]
+text   = "#14000d"
+cursor = "#ff00ff"
+
+[colors.selection]
+text       = "#ff77ff"
+background = "#414868"
+
+[colors.normal]
+black   = "#14000d"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff00ff"
+magenta = "#cc00cc"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff00ff"
+magenta = "#cc00cc"
+cyan    = "#7dcfff"
+white   = "#ff77ff"

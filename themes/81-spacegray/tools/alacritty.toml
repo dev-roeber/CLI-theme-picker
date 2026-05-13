@@ -1,0 +1,32 @@
+# alacritty theme: 81-spacegray — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#2b303b"
+foreground = "#c0c5ce"
+
+[colors.cursor]
+text   = "#2b303b"
+cursor = "#bf616a"
+
+[colors.selection]
+text       = "#c0c5ce"
+background = "#414868"
+
+[colors.normal]
+black   = "#2b303b"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#bf616a"
+magenta = "#a3be8c"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#bf616a"
+magenta = "#a3be8c"
+cyan    = "#7dcfff"
+white   = "#c0c5ce"

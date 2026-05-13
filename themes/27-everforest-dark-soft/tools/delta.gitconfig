@@ -1,0 +1,15 @@
+# delta theme — included via [include] path = ~/.config/theme-picker/active/delta.gitconfig
+[delta]
+  syntax-theme = Visual Studio Dark+
+  line-numbers = true
+  navigate = true
+  side-by-side = false
+  file-style = "#7fbbb3 bold"
+  hunk-header-decoration-style = "#7fbbb3 ul"
+  file-decoration-style = "#7fbbb3"
+  minus-style = "syntax #e67e8033"
+  minus-emph-style = "syntax #e67e8055"
+  plus-style = "syntax #a7c08033"
+  plus-emph-style = "syntax #a7c08055"
+  zero-style = "syntax"
+  whitespace-error-style = "#e67e80 reverse"

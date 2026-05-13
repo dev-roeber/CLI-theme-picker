@@ -136,6 +136,21 @@ fi
 # tmux reload if running
 tmux info >/dev/null 2>&1 && tmux source-file "$HOME/.tmux.conf" 2>/dev/null || true
 
+# Tool-Configs aktivieren: pro Tool einen stabilen Symlink unter
+# ~/.config/theme-picker/active/, von dem aus die jeweilige Tool-Config
+# inkludiert wird. So bleiben User-Configs unangetastet, das Theme
+# wird einmalig per include eingebunden.
+ACTIVE_DIR="$TP_HOME/active"
+mkdir -p "$ACTIVE_DIR"
+TOOLS_SRC="$THEME_DIR/tools"
+if [ -d "$TOOLS_SRC" ]; then
+  for tf in delta.gitconfig eza-colors lsd-colors.yaml lazygit.yml btop.theme nvim.lua kitty.conf ghostty.conf alacritty.toml; do
+    if [ -f "$TOOLS_SRC/$tf" ]; then
+      ln -sfn "$TOOLS_SRC/$tf" "$ACTIVE_DIR/$tf"
+    fi
+  done
+fi
+
 # State
 echo "$THEME" > "$STATE"
 

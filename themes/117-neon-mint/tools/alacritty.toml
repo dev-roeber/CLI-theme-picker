@@ -1,0 +1,32 @@
+# alacritty theme: 117-neon-mint — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#001410"
+foreground = "#00ffaa"
+
+[colors.cursor]
+text   = "#001410"
+cursor = "#3eb489"
+
+[colors.selection]
+text       = "#00ffaa"
+background = "#414868"
+
+[colors.normal]
+black   = "#001410"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#3eb489"
+magenta = "#50f0a0"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#3eb489"
+magenta = "#50f0a0"
+cyan    = "#7dcfff"
+white   = "#00ffaa"

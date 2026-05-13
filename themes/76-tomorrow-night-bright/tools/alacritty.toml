@@ -1,0 +1,32 @@
+# alacritty theme: 76-tomorrow-night-bright — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#000000"
+foreground = "#eaeaea"
+
+[colors.cursor]
+text   = "#000000"
+cursor = "#7aa6da"
+
+[colors.selection]
+text       = "#eaeaea"
+background = "#414868"
+
+[colors.normal]
+black   = "#000000"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa6da"
+magenta = "#b9ca4a"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa6da"
+magenta = "#b9ca4a"
+cyan    = "#7dcfff"
+white   = "#eaeaea"

@@ -1,0 +1,32 @@
+# alacritty theme: 60-cyberpunk-neon — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#000b1e"
+foreground = "#0abdc6"
+
+[colors.cursor]
+text   = "#000b1e"
+cursor = "#ea00d9"
+
+[colors.selection]
+text       = "#0abdc6"
+background = "#414868"
+
+[colors.normal]
+black   = "#000b1e"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ea00d9"
+magenta = "#fde400"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ea00d9"
+magenta = "#fde400"
+cyan    = "#7dcfff"
+white   = "#0abdc6"

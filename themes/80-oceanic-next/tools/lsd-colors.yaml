@@ -1,0 +1,36 @@
+# lsd theme
+user: #6699cc
+group: #65737e
+permission:
+  read: #99c794
+  write: #fac863
+  exec: #ec5f67
+  exec-sticky: #c594c5
+  no-access: #ec5f67
+date:
+  hour-old: #6699cc
+  day-old: #d8dee9
+  older: #65737e
+size:
+  none: #65737e
+  small: #99c794
+  medium: #fac863
+  large: #ec5f67
+inode:
+  valid: #d8dee9
+  invalid: #65737e
+links:
+  valid: #d8dee9
+  invalid: #ec5f67
+tree-edge: #65737e
+git-status:
+  default: #d8dee9
+  unmodified: #65737e
+  ignored: #65737e
+  new-in-index: #99c794
+  new-in-workdir: #99c794
+  typechange: #fac863
+  deleted: #ec5f67
+  renamed: #fac863
+  modified: #fac863
+  conflicted: #ec5f67

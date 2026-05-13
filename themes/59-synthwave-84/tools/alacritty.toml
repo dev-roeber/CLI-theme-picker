@@ -1,0 +1,32 @@
+# alacritty theme: 59-synthwave-84 — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#241b2f"
+foreground = "#f7f7ff"
+
+[colors.cursor]
+text   = "#241b2f"
+cursor = "#ff7edb"
+
+[colors.selection]
+text       = "#f7f7ff"
+background = "#495495"
+
+[colors.normal]
+black   = "#000000"
+red     = "#fe4450"
+green   = "#72f1b8"
+yellow  = "#fede5d"
+blue    = "#03edf9"
+magenta = "#ff7edb"
+cyan    = "#03edf9"
+white   = "#f7f7ff"
+
+[colors.bright]
+black   = "#495495"
+red     = "#fe4450"
+green   = "#72f1b8"
+yellow  = "#fede5d"
+blue    = "#03edf9"
+magenta = "#ff7edb"
+cyan    = "#03edf9"
+white   = "#f7f7ff"

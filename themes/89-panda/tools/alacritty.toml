@@ -1,0 +1,32 @@
+# alacritty theme: 89-panda — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#292a2b"
+foreground = "#e6e6e6"
+
+[colors.cursor]
+text   = "#292a2b"
+cursor = "#ff75b5"
+
+[colors.selection]
+text       = "#e6e6e6"
+background = "#414868"
+
+[colors.normal]
+black   = "#292a2b"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff75b5"
+magenta = "#19f9d8"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff75b5"
+magenta = "#19f9d8"
+cyan    = "#7dcfff"
+white   = "#e6e6e6"

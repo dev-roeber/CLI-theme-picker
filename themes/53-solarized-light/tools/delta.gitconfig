@@ -1,0 +1,15 @@
+# delta theme — included via [include] path = ~/.config/theme-picker/active/delta.gitconfig
+[delta]
+  syntax-theme = Solarized (light)
+  line-numbers = true
+  navigate = true
+  side-by-side = false
+  file-style = "#268bd2 bold"
+  hunk-header-decoration-style = "#268bd2 ul"
+  file-decoration-style = "#268bd2"
+  minus-style = "syntax #dc322f33"
+  minus-emph-style = "syntax #dc322f55"
+  plus-style = "syntax #85990033"
+  plus-emph-style = "syntax #85990055"
+  zero-style = "syntax"
+  whitespace-error-style = "#dc322f reverse"

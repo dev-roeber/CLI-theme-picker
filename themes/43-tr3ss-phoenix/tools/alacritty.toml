@@ -1,0 +1,32 @@
+# alacritty theme: 43-tr3ss-phoenix — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#1a1a1a"
+foreground = "#fab387"
+
+[colors.cursor]
+text   = "#1a1a1a"
+cursor = "#ff6b35"
+
+[colors.selection]
+text       = "#fab387"
+background = "#414868"
+
+[colors.normal]
+black   = "#1a1a1a"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff6b35"
+magenta = "#b85432"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff6b35"
+magenta = "#b85432"
+cyan    = "#7dcfff"
+white   = "#fab387"

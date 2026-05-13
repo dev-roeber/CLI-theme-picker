@@ -1,0 +1,32 @@
+# alacritty theme: 90-snazzy — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#1e1f29"
+foreground = "#eff0eb"
+
+[colors.cursor]
+text   = "#1e1f29"
+cursor = "#ff6ac1"
+
+[colors.selection]
+text       = "#eff0eb"
+background = "#555555"
+
+[colors.normal]
+black   = "#000000"
+red     = "#fc4346"
+green   = "#50fb7c"
+yellow  = "#f0fb8c"
+blue    = "#49baff"
+magenta = "#fc4cb4"
+cyan    = "#8be9fe"
+white   = "#ededec"
+
+[colors.bright]
+black   = "#555555"
+red     = "#fc4346"
+green   = "#50fb7c"
+yellow  = "#f0fb8c"
+blue    = "#49baff"
+magenta = "#fc4cb4"
+cyan    = "#8be9fe"
+white   = "#ededec"

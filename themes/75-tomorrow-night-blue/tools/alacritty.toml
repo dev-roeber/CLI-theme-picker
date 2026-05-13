@@ -1,0 +1,32 @@
+# alacritty theme: 75-tomorrow-night-blue — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#002451"
+foreground = "#ffffff"
+
+[colors.cursor]
+text   = "#002451"
+cursor = "#bbdaff"
+
+[colors.selection]
+text       = "#ffffff"
+background = "#414868"
+
+[colors.normal]
+black   = "#002451"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#bbdaff"
+magenta = "#ffeead"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#bbdaff"
+magenta = "#ffeead"
+cyan    = "#7dcfff"
+white   = "#ffffff"

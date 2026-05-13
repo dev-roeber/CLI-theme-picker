@@ -1,0 +1,32 @@
+# alacritty theme: 109-neon-pink — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#140008"
+foreground = "#ff1493"
+
+[colors.cursor]
+text   = "#140008"
+cursor = "#ff10f0"
+
+[colors.selection]
+text       = "#ff1493"
+background = "#414868"
+
+[colors.normal]
+black   = "#140008"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff10f0"
+magenta = "#ff6ec7"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#ff10f0"
+magenta = "#ff6ec7"
+cyan    = "#7dcfff"
+white   = "#ff1493"

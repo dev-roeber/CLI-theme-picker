@@ -1,0 +1,32 @@
+# alacritty theme: 112-neon-turquoise — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#001414"
+foreground = "#00ced1"
+
+[colors.cursor]
+text   = "#001414"
+cursor = "#40e0d0"
+
+[colors.selection]
+text       = "#00ced1"
+background = "#414868"
+
+[colors.normal]
+black   = "#001414"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#40e0d0"
+magenta = "#00ffff"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#40e0d0"
+magenta = "#00ffff"
+cyan    = "#7dcfff"
+white   = "#00ced1"

@@ -1,0 +1,32 @@
+# alacritty theme: 118-neon-azure — include via:  import = ["~/.config/theme-picker/active/alacritty.toml"]
+[colors.primary]
+background = "#00081f"
+foreground = "#1e90ff"
+
+[colors.cursor]
+text   = "#00081f"
+cursor = "#007fff"
+
+[colors.selection]
+text       = "#1e90ff"
+background = "#414868"
+
+[colors.normal]
+black   = "#00081f"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#007fff"
+magenta = "#00bfff"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#007fff"
+magenta = "#00bfff"
+cyan    = "#7dcfff"
+white   = "#1e90ff"

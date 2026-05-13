@@ -1,0 +1,15 @@
+# delta theme — included via [include] path = ~/.config/theme-picker/active/delta.gitconfig
+[delta]
+  syntax-theme = Nord
+  line-numbers = true
+  navigate = true
+  side-by-side = false
+  file-style = "#5e81ac bold"
+  hunk-header-decoration-style = "#5e81ac ul"
+  file-decoration-style = "#5e81ac"
+  minus-style = "syntax #bf616a33"
+  minus-emph-style = "syntax #bf616a55"
+  plus-style = "syntax #a3be8c33"
+  plus-emph-style = "syntax #a3be8c55"
+  zero-style = "syntax"
+  whitespace-error-style = "#bf616a reverse"
