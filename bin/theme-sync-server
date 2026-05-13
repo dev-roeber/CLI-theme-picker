@@ -5,12 +5,7 @@ TP_HOME="${HOME}/.config/theme-picker"
 THEMES_DIR="$TP_HOME/themes"
 STATE="$TP_HOME/state/current-theme"
 BACKUP_ROOT="$TP_HOME/backups"
-SSH_HOST="${THEME_PICKER_SSH_HOST:-}"
-if [ -z "$SSH_HOST" ]; then
-  echo "ERROR: THEME_PICKER_SSH_HOST not set (e.g. user@host or alias from ~/.ssh/config)." >&2
-  echo "Hint: export THEME_PICKER_SSH_HOST=user@server.example.com" >&2
-  exit 1
-fi
+SSH_HOST="sebastian@178.104.51.78"
 
 if [ $# -lt 1 ]; then
   echo "Usage: theme-sync-server THEME_SLUG" >&2

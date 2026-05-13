@@ -5,7 +5,7 @@ TP_HOME="${HOME}/.config/theme-picker"
 THEMES_DIR="$TP_HOME/themes"
 STATE="$TP_HOME/state/current-theme"
 BACKUP_ROOT="$TP_HOME/backups"
-SSH_HOST="${THEME_PICKER_SSH_HOST:-}"
+SSH_HOST="sebastian@178.104.51.78"
 
 if [ $# -lt 1 ]; then
   echo "Usage: theme-apply THEME_SLUG" >&2
@@ -139,6 +139,13 @@ tmux info >/dev/null 2>&1 && tmux source-file "$HOME/.tmux.conf" 2>/dev/null || 
 # State
 echo "$THEME" > "$STATE"
 
+# Emit terminal OSC sequences (FG/BG/cursor) immediately, so the current terminal
+# session reflects the new theme without requiring exec zsh.
+if [ -f "$THEME_DIR/theme.env" ]; then
+  # shellcheck disable=SC1090
+  . "$THEME_DIR/theme.env" 2>/dev/null || true
+fi
+
 echo "Applied: $THEME"
 echo "Backup: $BACKUP_DIR"
-echo "Run: exec zsh"
+echo "Run: exec zsh   (for prompt + tools to fully reload)"
