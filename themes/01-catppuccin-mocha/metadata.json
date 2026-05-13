@@ -1,0 +1,9 @@
+{
+  "name": "Catppuccin Mocha",
+  "slug": "01-catppuccin-mocha",
+  "rank": 1,
+  "category": "official-preset",
+  "nerd_font_required": true,
+  "recommended_for": "macbook",
+  "notes": "Mocha-Palette via catppuccin-powerline preset"
+}

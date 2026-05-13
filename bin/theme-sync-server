@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TP_HOME="${HOME}/.config/theme-picker"
+THEMES_DIR="$TP_HOME/themes"
+STATE="$TP_HOME/state/current-theme"
+BACKUP_ROOT="$TP_HOME/backups"
+SSH_HOST="${THEME_PICKER_SSH_HOST:-}"
+if [ -z "$SSH_HOST" ]; then
+  echo "ERROR: THEME_PICKER_SSH_HOST not set (e.g. user@host or alias from ~/.ssh/config)." >&2
+  echo "Hint: export THEME_PICKER_SSH_HOST=user@server.example.com" >&2
+  exit 1
+fi
+
+if [ $# -lt 1 ]; then
+  echo "Usage: theme-sync-server THEME_SLUG" >&2
+  exit 1
+fi
+
+THEME="$1"
+
+if [ ! -d "$THEMES_DIR/$THEME" ]; then
+  echo "ERROR: Theme '$THEME' not found locally at $THEMES_DIR/$THEME" >&2
+  exit 1
+fi
+
+# SSH reachability
+if ! ssh -o ConnectTimeout=5 -o BatchMode=yes "$SSH_HOST" true 2>/dev/null; then
+  echo "ERROR: Cannot reach $SSH_HOST via SSH (BatchMode, 5s timeout)." >&2
+  echo "Hint: ensure SSH key auth is configured and host is reachable." >&2
+  exit 1
+fi
+
+# rsync themes
+rsync -az --delete "$TP_HOME/themes/" "$SSH_HOST:.config/theme-picker/themes/"
+
+# rsync bin
+rsync -az "$TP_HOME/bin/" "$SSH_HOST:.config/theme-picker/bin/"
+
+# Remote apply
+ssh "$SSH_HOST" "THEME=$(printf %q "$THEME") bash -s" <<'REMOTE'
+set -euo pipefail
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 2>/dev/null || true
+for t in starship fzf bat tmux git curl jq rsync; do
+  if ! command -v $t >/dev/null 2>&1; then
+    echo "Installing $t..."
+    brew install $t || echo "WARN: $t install failed"
+  fi
+done
+mkdir -p ~/.local/bin ~/.config/theme-picker/state ~/.config/theme-picker/backups ~/.config/bat ~/.config/fzf ~/.config/tmux
+chmod +x ~/.config/theme-picker/bin/*
+for s in theme-apply theme-current theme-list theme-rollback theme-picker theme-sync-server theme-generate-all; do
+  [ -f ~/.config/theme-picker/bin/$s ] && ln -sfn ~/.config/theme-picker/bin/$s ~/.local/bin/$s
+done
+~/.config/theme-picker/bin/theme-apply "$THEME"
+REMOTE
+
+echo "Server synced: $THEME"

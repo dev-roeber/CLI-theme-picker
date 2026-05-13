@@ -1,0 +1,4 @@
+state/
+backups/
+current-theme.zsh
+.DS_Store

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TP_HOME="${HOME}/.config/theme-picker"
+THEMES_DIR="$TP_HOME/themes"
+STATE="$TP_HOME/state/current-theme"
+BACKUP_ROOT="$TP_HOME/backups"
+SSH_HOST="${THEME_PICKER_SSH_HOST:-}"
+
+if [ -s "$STATE" ]; then
+  cat "$STATE"
+else
+  echo "no theme set"
+fi

@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TP_HOME="${HOME}/.config/theme-picker"
+THEMES_DIR="$TP_HOME/themes"
+STATE="$TP_HOME/state/current-theme"
+BACKUP_ROOT="$TP_HOME/backups"
+SSH_HOST="${THEME_PICKER_SSH_HOST:-}"
+
+MODE="${1:-}"
+
+missing=()
+for i in $(seq 1 50); do
+  num="$(printf "%02d" "$i")"
+  found=""
+  for d in "$THEMES_DIR"/"$num"-*/; do
+    if [ -d "$d" ]; then
+      found="$d"
+      break
+    fi
+  done
+  if [ -z "$found" ]; then
+    missing+=("$num")
+  fi
+done
+
+if [ "${#missing[@]}" -eq 0 ]; then
+  echo "OK: all 50 theme directories (01-50) are present in $THEMES_DIR"
+else
+  echo "Missing theme numbers (${#missing[@]}):"
+  for m in "${missing[@]}"; do
+    echo "  - $m"
+  done
+fi
+
+case "$MODE" in
+  --check)
+    if [ "${#missing[@]}" -ne 0 ]; then
+      exit 1
+    fi
+    exit 0
+    ;;
+  "")
+    cat <<'EOF'
+
+Hinweis: theme-generate-all ist aktuell ein Stub.
+Die initiale Generierung der 50 Themes wurde bereits von Setup-Agents
+durchgefuehrt. Eine Re-Generation erfolgt derzeit manuell:
+  - Themes liegen unter ~/.config/theme-picker/themes/NN-slug/
+  - Pro Theme: starship.toml, tmux.conf, fzf.zsh, bat.conf, theme.env, metadata.json
+  - Zum Neu-Erzeugen einzelner Themes bitte den entsprechenden
+    Setup-/Generator-Schritt erneut anstossen.
+EOF
+    ;;
+  *)
+    echo "Unknown option: $MODE" >&2
+    echo "Usage: theme-generate-all [--check]" >&2
+    exit 1
+    ;;
+esac

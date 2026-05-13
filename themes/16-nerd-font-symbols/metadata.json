@@ -1,0 +1,9 @@
+{
+  "name": "Nerd Font Symbols Preset",
+  "slug": "16-nerd-font-symbols",
+  "rank": 16,
+  "category": "official-preset",
+  "nerd_font_required": true,
+  "recommended_for": "all",
+  "notes": "Nerd Font Symbols Preset theme"
+}

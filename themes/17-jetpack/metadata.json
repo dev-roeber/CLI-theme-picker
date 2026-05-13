@@ -1,0 +1,9 @@
+{
+  "name": "Jetpack Preset",
+  "slug": "17-jetpack",
+  "rank": 17,
+  "category": "official-preset",
+  "nerd_font_required": false,
+  "recommended_for": "all",
+  "notes": "Jetpack Preset theme"
+}

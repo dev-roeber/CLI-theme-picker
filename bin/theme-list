@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TP_HOME="${HOME}/.config/theme-picker"
+THEMES_DIR="$TP_HOME/themes"
+STATE="$TP_HOME/state/current-theme"
+BACKUP_ROOT="$TP_HOME/backups"
+SSH_HOST="${THEME_PICKER_SSH_HOST:-}"
+
+if ! command -v jq >/dev/null 2>&1; then
+  echo "ERROR: jq is required" >&2
+  exit 1
+fi
+
+current=""
+if [ -s "$STATE" ]; then
+  current="$(cat "$STATE")"
+fi
+
+printf "%-1s %-4s %-34s %-18s %-5s %-9s %s\n" " " "RANK" "SLUG" "CATEGORY" "NERD" "REC.FOR" "NAME"
+
+# Build a sortable list: rank<TAB>slug
+tmpfile="$(mktemp)"
+trap 'rm -f "$tmpfile"' EXIT
+
+for dir in "$THEMES_DIR"/*/; do
+  [ -d "$dir" ] || continue
+  meta="$dir/metadata.json"
+  [ -f "$meta" ] || continue
+  slug="$(basename "$dir")"
+  rank="$(jq -r '.rank // 999' "$meta")"
+  printf "%05d\t%s\n" "$rank" "$slug" >> "$tmpfile"
+done
+
+sort "$tmpfile" | while IFS=$'\t' read -r _rank slug; do
+  meta="$THEMES_DIR/$slug/metadata.json"
+  rank="$(jq -r '.rank // ""' "$meta")"
+  name="$(jq -r '.name // ""' "$meta")"
+  category="$(jq -r '.category // ""' "$meta")"
+  nerd="$(jq -r 'if .nerd_font_required then "yes" else "no" end' "$meta")"
+  rec="$(jq -r '.recommended_for // ""' "$meta")"
+  marker=" "
+  if [ "$slug" = "$current" ]; then
+    marker="*"
+  fi
+  printf "%-1s %-4s %-34s %-18s %-5s %-9s %s\n" "$marker" "$rank" "$slug" "$category" "$nerd" "$rec" "$name"
+done

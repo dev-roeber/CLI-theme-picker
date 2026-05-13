@@ -1,0 +1,209 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TP_HOME="${HOME}/.config/theme-picker"
+THEMES_DIR="$TP_HOME/themes"
+STATE="$TP_HOME/state/current-theme"
+BACKUP_ROOT="$TP_HOME/backups"
+SSH_HOST="${THEME_PICKER_SSH_HOST:-}"
+
+export THEMES_DIR
+
+usage() {
+  cat <<EOF
+Usage: theme-picker [OPTIONS]
+
+Options:
+  --local              Apply selected theme locally only
+  --server             Sync selected theme to server only
+  --all                Apply locally AND sync to server
+  --mode local|server|all
+                       Same as --local/--server/--all
+  --theme SLUG         Use SLUG (skip fzf)
+  --list               Show theme list and exit
+  -h, --help           Show this help
+EOF
+}
+
+MODE=""
+SLUG=""
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --local)   MODE="local"; shift ;;
+    --server)  MODE="server"; shift ;;
+    --all)     MODE="all"; shift ;;
+    --mode)
+      case "${2:-}" in
+        local|server|all) MODE="$2"; shift 2 ;;
+        *) echo "ERROR: --mode requires local|server|all" >&2; exit 1 ;;
+      esac
+      ;;
+    --theme)   SLUG="${2:-}"; shift 2 ;;
+    --list)    exec "$TP_HOME/bin/theme-list" ;;
+    -h|--help) usage; exit 0 ;;
+    *) echo "Unknown option: $1" >&2; usage >&2; exit 1 ;;
+  esac
+done
+
+# Validate explicit slug
+if [ -n "$SLUG" ]; then
+  if [ ! -d "$THEMES_DIR/$SLUG" ]; then
+    echo "ERROR: theme '$SLUG' not found" >&2
+    exit 1
+  fi
+fi
+
+# Detect current theme (best effort)
+current_theme=""
+if [ -x "$TP_HOME/bin/theme-current" ]; then
+  current_theme="$("$TP_HOME/bin/theme-current" 2>/dev/null | awk 'NR==1{print $NF}' || true)"
+fi
+[ -z "$current_theme" ] && [ -f "$STATE" ] && current_theme="$(cat "$STATE" 2>/dev/null || true)"
+
+has_fzf=0
+command -v fzf >/dev/null 2>&1 && has_fzf=1
+
+# --- Theme-Auswahl ---
+if [ -z "$SLUG" ]; then
+  if ! command -v jq >/dev/null 2>&1; then
+    echo "ERROR: jq not installed" >&2
+    exit 1
+  fi
+
+  tmpfile="$(mktemp)"
+  trap 'rm -f "$tmpfile"' EXIT
+
+  # Build sorted list with rank prefix preserved as first field for sort,
+  # then strip on display via --with-nth=2..
+  for dir in "$THEMES_DIR"/*/; do
+    [ -d "$dir" ] || continue
+    meta="$dir/metadata.json"
+    [ -f "$meta" ] || continue
+    slug="$(basename "$dir")"
+    rank="$(jq -r '.rank // 999' "$meta")"
+    name="$(jq -r '.name // ""' "$meta")"
+    category="$(jq -r '.category // ""' "$meta")"
+    nerd="$(jq -r 'if .nerd_font_required then "yes" else "no" end' "$meta")"
+    rec="$(jq -r '.recommended_for // ""' "$meta")"
+    if [ "$slug" = "$current_theme" ]; then
+      mark=$'\033[32m●\033[0m'
+    else
+      mark=$'\033[90m○\033[0m'
+    fi
+    # Fields: sortkey \t mark \t slug \t rank \t category \t nerd \t rec \t name
+    printf "%05d\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
+      "$rank" "$mark" "$slug" "$rank" "$category" "$nerd" "$rec" "$name"
+  done | sort -n > "$tmpfile"
+
+  # Pretty display via awk while preserving sort order; emit a hidden
+  # numeric sort key as col 1, then visible columns 2..N.
+  display_file="$(mktemp)"
+  trap 'rm -f "$tmpfile" "$display_file"' EXIT
+  awk -F'\t' '{
+    printf "%s\t%s\t%-34s %-4s %-18s %-5s %-9s %s\n", $1, $2, $3, $4, $5, $6, $7, $8
+  }' "$tmpfile" > "$display_file"
+
+  if [ -t 0 ] && [ "$has_fzf" -eq 1 ]; then
+    header_line1=$'\xe2\x86\x91/\xe2\x86\x93 w\xc3\xa4hlen \xc2\xb7 Enter best\xc3\xa4tigen \xc2\xb7 / filtern \xc2\xb7 Tab markieren \xc2\xb7 Ctrl-A alle \xc2\xb7 Esc abbrechen'
+    if [ -n "$current_theme" ]; then
+      header_line2="Current: $current_theme"
+    else
+      header_line2="Current: (none)"
+    fi
+    header="$header_line1"$'\n'"$header_line2"
+
+    selection="$(fzf \
+      --ansi \
+      --no-sort \
+      --cycle \
+      --height=90% \
+      --layout=reverse \
+      --border \
+      --delimiter=$'\t' \
+      --with-nth=2.. \
+      --nth=2.. \
+      --header="$header" \
+      --prompt='Theme ❯ ' \
+      --preview="printf '\033[1mTheme:\033[0m %s\n\n' {3}; cat \"$THEMES_DIR/{3}/metadata.json\" | jq ." \
+      --preview-window=right:45%:wrap \
+      < "$display_file" || true)"
+
+    if [ -z "$selection" ]; then
+      echo "Cancelled."
+      exit 0
+    fi
+    # Column 3 = slug (after stripping sortkey col1 + mark col2)
+    SLUG="$(printf '%s\n' "$selection" | awk -F'\t' '{print $3}' | awk '{print $1}')"
+  else
+    # Fallback: numbered list + read
+    echo "Available themes:"
+    i=0
+    declare -a slugs=()
+    while IFS=$'\t' read -r _sortkey _mark s _rank _cat _nerd _rec _name; do
+      i=$((i+1))
+      slugs+=("$s")
+      printf "  %2d) %s\n" "$i" "$s"
+    done < "$tmpfile"
+    printf "Select # (1-%d): " "$i"
+    read -r num || true
+    if [ -z "${num:-}" ] || ! [[ "$num" =~ ^[0-9]+$ ]] || [ "$num" -lt 1 ] || [ "$num" -gt "$i" ]; then
+      echo "ERROR: invalid selection" >&2
+      exit 1
+    fi
+    SLUG="${slugs[$((num-1))]}"
+  fi
+
+  if [ -z "$SLUG" ] || [ ! -d "$THEMES_DIR/$SLUG" ]; then
+    echo "ERROR: invalid selection" >&2
+    exit 1
+  fi
+fi
+
+# --- Mode-Auswahl ---
+if [ -z "$MODE" ]; then
+  if [ -t 0 ] && [ "$has_fzf" -eq 1 ]; then
+    mode_sel="$({
+      echo "local   apply on this MacBook only"
+      echo "server  sync to devroeber only"
+      echo "all     local + server"
+    } | fzf \
+        --header="Wo anwenden? (↑/↓ + Enter, Esc=cancel)" \
+        --prompt='Apply ❯ ' \
+        --height=30% --layout=reverse --border --no-sort || true)"
+    if [ -z "$mode_sel" ]; then
+      echo "Cancelled."
+      exit 0
+    fi
+    MODE="$(printf '%s\n' "$mode_sel" | awk '{print $1}')"
+  else
+    printf "Apply where? [local/server/all] (default local): "
+    read -r choice || true
+    case "${choice:-local}" in
+      local|server|all) MODE="${choice:-local}" ;;
+      "") MODE="local" ;;
+      *) MODE="local" ;;
+    esac
+  fi
+fi
+
+case "$MODE" in
+  local)
+    "$TP_HOME/bin/theme-apply" "$SLUG"
+    ;;
+  server)
+    "$TP_HOME/bin/theme-sync-server" "$SLUG"
+    ;;
+  all)
+    "$TP_HOME/bin/theme-apply" "$SLUG"
+    "$TP_HOME/bin/theme-sync-server" "$SLUG"
+    ;;
+  *)
+    echo "ERROR: invalid mode '$MODE'" >&2
+    exit 1
+    ;;
+esac
+
+echo
+echo "Current theme:"
+"$TP_HOME/bin/theme-current"

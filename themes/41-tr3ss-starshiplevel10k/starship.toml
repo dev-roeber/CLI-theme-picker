@@ -1,0 +1,62 @@
+"$schema" = "https://starship.rs/config-schema.json"
+add_newline = true
+palette = "main"
+
+[palettes.main]
+bg = "#1a1a1a"
+fg = "#ffffff"
+accent = "#5fafd7"
+
+format = """
+$directory[  ](fg:accent)$git_branch$git_status[  ](fg:accent)$cmd_duration$line_break$character"""
+
+
+[username]
+show_always = true
+style_user = "fg:fg bg:accent"
+style_root = "fg:red bold"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = false
+format = "[@$hostname]($style)"
+style = "fg:fg bg:accent"
+
+[directory]
+style = "fg:accent bold"
+format = "[ $path ]($style)"
+truncation_length = 3
+
+[git_branch]
+symbol = " "
+style = "fg:accent"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "fg:red"
+format = "([$all_status$ahead_behind]($style)) "
+
+[nodejs]
+symbol = "⬢ "
+format = "[$symbol($version)]($style) "
+
+[python]
+symbol = " "
+format = "[$symbol($version)]($style) "
+
+[docker_context]
+symbol = " "
+format = "[$symbol$context]($style) "
+
+[cmd_duration]
+min_time = 500
+format = "[took $duration]($style) "
+style = "yellow"
+
+[status]
+disabled = false
+format = "[$status]($style) "
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"

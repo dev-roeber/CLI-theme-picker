@@ -1,0 +1,152 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TP_HOME="${HOME}/.config/theme-picker"
+THEMES_DIR="$TP_HOME/themes"
+STATE="$TP_HOME/state/current-theme"
+BACKUP_ROOT="$TP_HOME/backups"
+SSH_HOST="${THEME_PICKER_SSH_HOST:-}"
+
+ASSUME_YES=0
+LIST_ONLY=0
+ARG_BACKUP=""
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -y|--yes) ASSUME_YES=1; shift ;;
+    -l|--list) LIST_ONLY=1; shift ;;
+    -h|--help)
+      cat <<EOF
+Usage: theme-rollback [--yes|-y] [--list|-l] [BACKUP_NAME]
+  no args + fzf + jq + TTY: interactive picker
+  BACKUP_NAME              : rollback to named backup
+  --list / -l              : list backups only
+  --yes  / -y              : skip confirmation
+EOF
+      exit 0 ;;
+    --) shift; ARG_BACKUP="${1:-}"; shift || true ;;
+    *)  ARG_BACKUP="$1"; shift ;;
+  esac
+done
+
+list_backups() {
+  ls -1 "$BACKUP_ROOT" 2>/dev/null | grep -E '^[0-9]{8}-[0-9]{6}$' | sort -r || true
+}
+
+format_line() {
+  local name="$1"
+  local d="$BACKUP_ROOT/$name"
+  local n theme
+  n="$(find "$d" -maxdepth 1 -type f 2>/dev/null | wc -l | tr -d ' ')"
+  if [ -f "$d/.applied-from" ]; then
+    theme="$(cat "$d/.applied-from")"
+  else
+    theme="—"
+  fi
+  printf '%s   files: %s   theme: %s\n' "$name" "$n" "$theme"
+}
+
+if [ "$LIST_ONLY" -eq 1 ]; then
+  while IFS= read -r b; do
+    [ -z "$b" ] && continue
+    format_line "$b"
+  done < <(list_backups)
+  exit 0
+fi
+
+BACKUP=""
+
+if [ -n "$ARG_BACKUP" ]; then
+  BACKUP="$BACKUP_ROOT/$ARG_BACKUP"
+else
+  if command -v fzf >/dev/null 2>&1 && command -v jq >/dev/null 2>&1 && [ -t 0 ]; then
+    SELECTION=""
+    LINES=""
+    while IFS= read -r b; do
+      [ -z "$b" ] && continue
+      LINES+="$(format_line "$b")"$'\n'
+    done < <(list_backups)
+    if [ -z "$LINES" ]; then
+      echo "ERROR: no backups found in $BACKUP_ROOT" >&2
+      exit 1
+    fi
+    set +e
+    SELECTION="$(printf '%s' "$LINES" | fzf \
+      --height=70% --layout=reverse --border --no-sort --cycle \
+      --header="Rollback wählen — ↑/↓ + Enter, Esc=cancel. WARNUNG: überschreibt aktuelle Configs." \
+      --prompt="Backup ❯ " \
+      --preview="ls -la $BACKUP_ROOT/{1} 2>/dev/null; echo; [ -f $BACKUP_ROOT/{1}/.applied-from ] && echo \"applied-from: \$(cat $BACKUP_ROOT/{1}/.applied-from)\"" \
+      --preview-window=right:50%:wrap)"
+    RC=$?
+    set -e
+    if [ $RC -ne 0 ] || [ -z "$SELECTION" ]; then
+      echo "Cancelled."
+      exit 0
+    fi
+    NAME="$(printf '%s' "$SELECTION" | awk '{print $1}')"
+    BACKUP="$BACKUP_ROOT/$NAME"
+  else
+    echo "Hinweis: kein TTY/fzf/jq — Auto-Default (jüngstes Backup)." >&2
+    LATEST="$(list_backups | head -n1)"
+    if [ -z "$LATEST" ]; then
+      echo "ERROR: no backups found in $BACKUP_ROOT" >&2
+      exit 1
+    fi
+    BACKUP="$BACKUP_ROOT/$LATEST"
+  fi
+fi
+
+if [ ! -d "$BACKUP" ]; then
+  echo "ERROR: backup not found: $BACKUP" >&2
+  exit 1
+fi
+
+if [ "$ASSUME_YES" -ne 1 ]; then
+  read -r -p "Wirklich Rollback auf $BACKUP? [y/N] " ans
+  case "$ans" in
+    y|Y|yes|YES) ;;
+    *) echo "Cancelled."; exit 0 ;;
+  esac
+fi
+
+TS="$(date +%Y%m%d-%H%M%S)"
+PRE="$BACKUP_ROOT/pre-rollback-$TS"
+mkdir -p "$PRE"
+
+snap() {
+  local src="$1"; local name="$2"
+  if [ -f "$src" ] && [ ! -L "$src" ]; then
+    cp -a "$src" "$PRE/$name" 2>/dev/null || true
+  elif [ -L "$src" ]; then
+    cp -aL "$src" "$PRE/$name" 2>/dev/null || true
+  fi
+}
+
+snap "$HOME/.config/starship.toml" "starship.toml"
+snap "$HOME/.tmux.conf" "tmux.conf"
+snap "$HOME/.config/tmux/theme.conf" "tmux-theme.conf"
+snap "$HOME/.config/fzf/theme.zsh" "fzf-theme.zsh"
+snap "$HOME/.config/bat/config" "bat-config"
+snap "$HOME/.zshrc" "zshrc"
+
+restore() {
+  local src="$BACKUP/$1"
+  local dest="$2"
+  if [ -f "$src" ]; then
+    mkdir -p "$(dirname "$dest")"
+    if [ -L "$dest" ]; then rm -f "$dest"; fi
+    cp -a "$src" "$dest"
+    echo "  restored: $dest"
+  fi
+}
+
+restore "starship.toml"    "$HOME/.config/starship.toml"
+restore "tmux.conf"        "$HOME/.tmux.conf"
+restore "tmux-theme.conf"  "$HOME/.config/tmux/theme.conf"
+restore "fzf-theme.zsh"    "$HOME/.config/fzf/theme.zsh"
+restore "bat-config"       "$HOME/.config/bat/config"
+restore "zshrc"            "$HOME/.zshrc"
+
+echo "Rolled back to: $BACKUP"
+echo "Pre-rollback snapshot: $PRE"
+echo "WARN: state file ($STATE) wurde NICHT geaendert und passt ggf. nicht mehr zum tatsaechlichen Zustand."

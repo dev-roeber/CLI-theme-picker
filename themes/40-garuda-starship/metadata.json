@@ -1,0 +1,9 @@
+{
+  "name": "Garuda Linux Style",
+  "slug": "40-garuda-starship",
+  "rank": 40,
+  "category": "local-generated",
+  "nerd_font_required": true,
+  "recommended_for": "macbook",
+  "notes": "Variant B; bat theme gruvbox-dark"
+}

@@ -1,0 +1,144 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TP_HOME="${HOME}/.config/theme-picker"
+THEMES_DIR="$TP_HOME/themes"
+STATE="$TP_HOME/state/current-theme"
+BACKUP_ROOT="$TP_HOME/backups"
+SSH_HOST="${THEME_PICKER_SSH_HOST:-}"
+
+if [ $# -lt 1 ]; then
+  echo "Usage: theme-apply THEME_SLUG" >&2
+  exit 1
+fi
+
+THEME="$1"
+THEME_DIR="$THEMES_DIR/$THEME"
+
+if [ ! -d "$THEME_DIR" ]; then
+  echo "ERROR: Theme '$THEME' not found at $THEME_DIR" >&2
+  if [ -x "$TP_HOME/bin/theme-list" ]; then
+    "$TP_HOME/bin/theme-list" >&2 || true
+  fi
+  exit 1
+fi
+
+mkdir -p "$HOME/.config/tmux" "$HOME/.config/fzf" "$HOME/.config/bat" \
+  "$TP_HOME/state" "$BACKUP_ROOT"
+
+TS="$(date +%Y%m%d-%H%M%S)"
+BACKUP_DIR="$BACKUP_ROOT/$TS"
+mkdir -p "$BACKUP_DIR"
+
+# Backup helper: only backup real files or symlinks NOT pointing into $TP_HOME
+backup_real() {
+  local src="$1"
+  local dest_name="$2"
+  if [ -e "$src" ] || [ -L "$src" ]; then
+    if [ -L "$src" ]; then
+      local tgt
+      tgt="$(readlink "$src")"
+      case "$tgt" in
+        "$TP_HOME"/*|*"/.config/theme-picker/"*) return 0 ;;
+      esac
+    fi
+    if [ -f "$src" ]; then
+      cp -a "$src" "$BACKUP_DIR/$dest_name" 2>/dev/null || true
+    fi
+  fi
+}
+
+backup_real "$HOME/.config/starship.toml" "starship.toml"
+backup_real "$HOME/.tmux.conf" "tmux.conf"
+backup_real "$HOME/.config/tmux/theme.conf" "tmux-theme.conf"
+backup_real "$HOME/.config/fzf/theme.zsh" "fzf-theme.zsh"
+backup_real "$HOME/.config/bat/config" "bat-config"
+backup_real "$HOME/.zshrc" "zshrc"
+
+# Marker
+echo "$THEME" > "$BACKUP_DIR/.applied-from"
+
+# Starship test
+if command -v starship >/dev/null 2>&1; then
+  if ! STARSHIP_CONFIG="$THEME_DIR/starship.toml" starship prompt >/dev/null 2>&1; then
+    echo "FEHLER: starship test failed für $THEME_DIR/starship.toml" >&2
+    echo "Backup: $BACKUP_DIR" >&2
+    exit 1
+  fi
+fi
+
+# Symlinks
+ln -sfn "$THEME_DIR/starship.toml" "$HOME/.config/starship.toml"
+ln -sfn "$THEME_DIR/tmux.conf"     "$HOME/.config/tmux/theme.conf"
+ln -sfn "$THEME_DIR/fzf.zsh"       "$HOME/.config/fzf/theme.zsh"
+ln -sfn "$THEME_DIR/bat.conf"      "$HOME/.config/bat/config"
+
+# Ensure ~/.tmux.conf sources theme.conf
+TMUX_CONF="$HOME/.tmux.conf"
+touch "$TMUX_CONF"
+if ! grep -qF '# >>> theme-picker tmux >>>' "$TMUX_CONF"; then
+  cat >> "$TMUX_CONF" <<'EOF'
+
+# >>> theme-picker tmux >>>
+source-file ~/.config/tmux/theme.conf
+# <<< theme-picker tmux <<<
+EOF
+fi
+
+# current-theme.zsh
+CURRENT_ZSH="$TP_HOME/current-theme.zsh"
+cat > "$CURRENT_ZSH" <<EOF
+# auto-generated
+export THEME_PICKER_THEME="$THEME"
+[ -f "\$HOME/.config/theme-picker/themes/$THEME/theme.env" ] && source "\$HOME/.config/theme-picker/themes/$THEME/theme.env"
+EOF
+
+# zshrc blocks (idempotent)
+ZSHRC="$HOME/.zshrc"
+touch "$ZSHRC"
+
+if ! grep -qF '# >>> theme-picker path >>>' "$ZSHRC"; then
+  cat >> "$ZSHRC" <<'EOF'
+
+# >>> theme-picker path >>>
+case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="$HOME/.local/bin:$PATH";; esac
+# <<< theme-picker path <<<
+EOF
+fi
+
+if ! grep -qF '# >>> theme-picker starship >>>' "$ZSHRC"; then
+  cat >> "$ZSHRC" <<'EOF'
+
+# >>> theme-picker starship >>>
+command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
+# <<< theme-picker starship <<<
+EOF
+fi
+
+if ! grep -qF '# >>> theme-picker env >>>' "$ZSHRC"; then
+  cat >> "$ZSHRC" <<'EOF'
+
+# >>> theme-picker env >>>
+[ -f "$HOME/.config/theme-picker/current-theme.zsh" ] && source "$HOME/.config/theme-picker/current-theme.zsh"
+# <<< theme-picker env <<<
+EOF
+fi
+
+if ! grep -qF '# >>> theme-picker fzf >>>' "$ZSHRC"; then
+  cat >> "$ZSHRC" <<'EOF'
+
+# >>> theme-picker fzf >>>
+[ -f "$HOME/.config/fzf/theme.zsh" ] && source "$HOME/.config/fzf/theme.zsh"
+# <<< theme-picker fzf <<<
+EOF
+fi
+
+# tmux reload if running
+tmux info >/dev/null 2>&1 && tmux source-file "$HOME/.tmux.conf" 2>/dev/null || true
+
+# State
+echo "$THEME" > "$STATE"
+
+echo "Applied: $THEME"
+echo "Backup: $BACKUP_DIR"
+echo "Run: exec zsh"

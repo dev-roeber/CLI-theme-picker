@@ -1,0 +1,9 @@
+{
+  "name": "No Runtime Versions Preset",
+  "slug": "20-no-runtime-versions",
+  "rank": 20,
+  "category": "official-preset",
+  "nerd_font_required": false,
+  "recommended_for": "server",
+  "notes": "No Runtime Versions Preset theme"
+}

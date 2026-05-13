@@ -1,0 +1,9 @@
+{
+  "name": "No Nerd Font Preset",
+  "slug": "15-no-nerd-fonts",
+  "rank": 15,
+  "category": "official-preset",
+  "nerd_font_required": false,
+  "recommended_for": "iphone",
+  "notes": "No Nerd Font Preset theme"
+}
