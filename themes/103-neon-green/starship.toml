@@ -1,0 +1,73 @@
+"$schema" = "https://starship.rs/config-schema.json"
+add_newline = true
+format = """
+[](fg:accent)\
+[ $username@$hostname ](fg:bg bg:accent bold)\
+[](fg:accent bg:secondary)\
+[ $directory ](fg:bg bg:secondary bold)\
+[](fg:secondary)\
+ $git_branch$git_status$cmd_duration$line_break$character"""
+
+palette = "main"
+
+[palettes.main]
+bg = "#001400"
+fg = "#39ff14"
+accent = "#00ff41"
+secondary = "#00ff88"
+muted = "#7f848e"
+red = "#ff0040"
+
+[username]
+style_user = "fg:accent bold"
+show_always = true
+format = "[$user]($style)@"
+
+[hostname]
+ssh_only = false
+style = "fg:secondary"
+format = "[$hostname]($style) "
+
+[directory]
+style = "fg:fg bold"
+format = "[ $path ]($style)"
+truncation_length = 3
+
+[git_branch]
+symbol = " "
+style = "fg:accent"
+format = "[ $symbol$branch ]($style)"
+
+[git_status]
+style = "fg:muted"
+format = "[$all_status$ahead_behind ]($style)"
+
+[nodejs]
+symbol = " "
+format = "[$symbol($version) ]($style)"
+style = "fg:muted"
+
+[python]
+symbol = " "
+format = "[$symbol($version) ]($style)"
+style = "fg:muted"
+
+[docker_context]
+symbol = " "
+format = "[$symbol$context ]($style)"
+style = "fg:muted"
+
+[cmd_duration]
+min_time = 1000
+style = "fg:muted"
+format = "[ took $duration ]($style)"
+
+[status]
+disabled = false
+symbol = "✘ "
+style = "fg:red"
+format = "[$symbol$status]($style)"
+
+[character]
+success_symbol = "[❯](fg:accent bold)"
+error_symbol = "[❯](fg:red bold)"

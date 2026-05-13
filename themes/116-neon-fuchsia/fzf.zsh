@@ -1,0 +1,1 @@
+export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:-} --height=40% --layout=reverse --border --color=bg+:#cc00cc,bg:#14000d,spinner:#ff00ff,hl:#ff00ff,fg:#ff77ff,header:#ff00ff,info:#ff00ff,pointer:#ff00ff,marker:#ff00ff,fg+:#ff77ff,prompt:#ff00ff,hl+:#ff00ff"
