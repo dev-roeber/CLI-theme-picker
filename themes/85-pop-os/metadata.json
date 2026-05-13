@@ -1,0 +1,9 @@
+{
+  "name": "Pop!_OS",
+  "slug": "85-pop-os",
+  "rank": 85,
+  "category": "local-generated",
+  "nerd_font_required": true,
+  "recommended_for": "macbook",
+  "notes": "Pop!_OS Style"
+}

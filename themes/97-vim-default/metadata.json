@@ -1,0 +1,9 @@
+{
+  "name": "Vim Default",
+  "slug": "97-vim-default",
+  "rank": 97,
+  "category": "local-generated",
+  "nerd_font_required": false,
+  "recommended_for": "server",
+  "notes": "Klassisches Vim minimal"
+}
