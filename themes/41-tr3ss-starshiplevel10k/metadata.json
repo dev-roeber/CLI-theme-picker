@@ -5,5 +5,15 @@
   "category": "local-generated",
   "nerd_font_required": true,
   "recommended_for": "macbook",
-  "notes": "Variant C; bat theme OneHalfDark"
+  "notes": "Variant C; bat theme OneHalfDark",
+  "ansi16_complete": true,
+  "contrast_ratio": 17.4,
+  "wcag_level": "AAA",
+  "mobile_safe_glyphs": false,
+  "mobile_apps": [
+    "termix",
+    "neoserver",
+    "shellfish"
+  ],
+  "mobile_category": "dark"
 }

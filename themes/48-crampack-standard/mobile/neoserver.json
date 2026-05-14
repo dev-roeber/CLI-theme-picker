@@ -1,0 +1,28 @@
+{
+  "title": "Crampack Standard",
+  "version": 1,
+  "background": "#1e1e2e",
+  "foreground": "#cdd6f4",
+  "cursor": "#89b4fa",
+  "cursorText": "#1e1e2e",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#cdd6f4",
+  "ansi": {
+    "black": "#1e1e2e",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#89b4fa",
+    "magenta": "#bb9af7",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#89b4fa",
+    "brightMagenta": "#bb9af7",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#cdd6f4"
+  }
+}

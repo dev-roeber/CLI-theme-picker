@@ -1,0 +1,28 @@
+{
+  "title": "Snazzy",
+  "version": 1,
+  "background": "#1e1f29",
+  "foreground": "#eff0eb",
+  "cursor": "#ff6ac1",
+  "cursorText": "#1e1f29",
+  "selectionBackground": "#555555",
+  "selectionForeground": "#eff0eb",
+  "ansi": {
+    "black": "#000000",
+    "red": "#fc4346",
+    "green": "#50fb7c",
+    "yellow": "#f0fb8c",
+    "blue": "#49baff",
+    "magenta": "#fc4cb4",
+    "cyan": "#8be9fe",
+    "white": "#ededec",
+    "brightBlack": "#555555",
+    "brightRed": "#fc4346",
+    "brightGreen": "#50fb7c",
+    "brightYellow": "#f0fb8c",
+    "brightBlue": "#49baff",
+    "brightMagenta": "#fc4cb4",
+    "brightCyan": "#8be9fe",
+    "brightWhite": "#ededec"
+  }
+}

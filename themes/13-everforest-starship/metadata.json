@@ -5,5 +5,15 @@
   "category": "local-generated",
   "nerd_font_required": false,
   "recommended_for": "server",
-  "notes": "Everforest Medium dark"
+  "notes": "Everforest Medium dark",
+  "ansi16_complete": true,
+  "contrast_ratio": 7.38,
+  "wcag_level": "AAA",
+  "mobile_safe_glyphs": true,
+  "mobile_apps": [
+    "termix",
+    "neoserver",
+    "shellfish"
+  ],
+  "mobile_category": "dark"
 }

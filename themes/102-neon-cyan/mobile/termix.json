@@ -1,0 +1,29 @@
+{
+  "id": "102-neon-cyan",
+  "name": "Neon Cyan",
+  "category": "dark",
+  "colors": {
+    "background": "#001414",
+    "foreground": "#00ffff",
+    "cursor": "#00f5ff",
+    "cursorAccent": "#001414",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#00ffff",
+    "black": "#001414",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#00f5ff",
+    "magenta": "#0080ff",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#00f5ff",
+    "brightMagenta": "#0080ff",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#00ffff"
+  }
+}

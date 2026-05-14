@@ -1,0 +1,29 @@
+{
+  "id": "88-laserwave",
+  "name": "LaserWave",
+  "category": "dark",
+  "colors": {
+    "background": "#27212e",
+    "foreground": "#ffffff",
+    "cursor": "#ff52bf",
+    "cursorAccent": "#27212e",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#ffffff",
+    "black": "#27212e",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ff52bf",
+    "magenta": "#eb64b9",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ff52bf",
+    "brightMagenta": "#eb64b9",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ffffff"
+  }
+}

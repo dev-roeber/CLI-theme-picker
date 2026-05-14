@@ -1,0 +1,28 @@
+{
+  "title": "Shades of Purple",
+  "version": 1,
+  "background": "#2d2b55",
+  "foreground": "#ffffff",
+  "cursor": "#a599e9",
+  "cursorText": "#2d2b55",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#ffffff",
+  "ansi": {
+    "black": "#2d2b55",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#a599e9",
+    "magenta": "#fad000",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#a599e9",
+    "brightMagenta": "#fad000",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ffffff"
+  }
+}

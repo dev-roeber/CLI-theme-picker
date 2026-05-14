@@ -5,5 +5,15 @@
   "category": "official-preset",
   "nerd_font_required": false,
   "recommended_for": "server",
-  "notes": "Bracketed Segments Preset theme"
+  "notes": "Bracketed Segments Preset theme",
+  "ansi16_complete": false,
+  "contrast_ratio": null,
+  "wcag_level": "unknown",
+  "mobile_safe_glyphs": true,
+  "mobile_apps": [
+    "termix",
+    "neoserver",
+    "shellfish"
+  ],
+  "mobile_category": "dark"
 }

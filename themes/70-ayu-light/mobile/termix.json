@@ -1,0 +1,29 @@
+{
+  "id": "70-ayu-light",
+  "name": "Ayu Light",
+  "category": "light",
+  "colors": {
+    "background": "#fafafa",
+    "foreground": "#5c6773",
+    "cursor": "#ff9940",
+    "cursorAccent": "#fafafa",
+    "selectionBackground": "#828c99",
+    "selectionForeground": "#5c6773",
+    "black": "#000000",
+    "red": "#f0533a",
+    "green": "#5e9700",
+    "yellow": "#f29718",
+    "blue": "#41a6d9",
+    "magenta": "#9d57d3",
+    "cyan": "#4dbf99",
+    "white": "#5c6773",
+    "brightBlack": "#828c99",
+    "brightRed": "#f0533a",
+    "brightGreen": "#5e9700",
+    "brightYellow": "#f29718",
+    "brightBlue": "#41a6d9",
+    "brightMagenta": "#9d57d3",
+    "brightCyan": "#4dbf99",
+    "brightWhite": "#000000"
+  }
+}

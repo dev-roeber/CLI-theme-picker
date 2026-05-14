@@ -1,0 +1,28 @@
+{
+  "title": "Neon Purple",
+  "version": 1,
+  "background": "#0d0014",
+  "foreground": "#b026ff",
+  "cursor": "#bf00ff",
+  "cursorText": "#0d0014",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#b026ff",
+  "ansi": {
+    "black": "#0d0014",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#bf00ff",
+    "magenta": "#9d00ff",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#bf00ff",
+    "brightMagenta": "#9d00ff",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#b026ff"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Cobalt2",
+  "version": 1,
+  "background": "#193549",
+  "foreground": "#ffffff",
+  "cursor": "#ffc600",
+  "cursorText": "#193549",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#ffffff",
+  "ansi": {
+    "black": "#193549",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ffc600",
+    "magenta": "#ff9d00",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ffc600",
+    "brightMagenta": "#ff9d00",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ffffff"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Nordic Pastel Powerline",
+  "version": 1,
+  "background": "#3b4252",
+  "foreground": "#e5e9f0",
+  "cursor": "#a3be8c",
+  "cursorText": "#3b4252",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#e5e9f0",
+  "ansi": {
+    "black": "#3b4252",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#a3be8c",
+    "magenta": "#b48ead",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#a3be8c",
+    "brightMagenta": "#b48ead",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#e5e9f0"
+  }
+}

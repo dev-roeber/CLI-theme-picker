@@ -1,0 +1,29 @@
+{
+  "id": "12-pastel-powerline",
+  "name": "Pastel Powerline",
+  "category": "dark",
+  "colors": {
+    "background": "#1e1e1e",
+    "foreground": "#dcdcdc",
+    "cursor": "#ffd6a5",
+    "cursorAccent": "#1e1e1e",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#dcdcdc",
+    "black": "#1e1e1e",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ffd6a5",
+    "magenta": "#bb9af7",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ffd6a5",
+    "brightMagenta": "#bb9af7",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#dcdcdc"
+  }
+}

@@ -1,0 +1,250 @@
+#!/usr/bin/env python3
+"""Generate mobile-app theme exports (Termix, NeoServer, Shellfish) for all themes.
+
+Reads each themes/<slug>/theme.env, extracts ANSI 16 + bg/fg/cursor from the OSC block,
+writes themes/<slug>/mobile/{termix,neoserver,shellfish}.json, enriches metadata.json
+with contrast_ratio, wcag_level, ansi16_complete, mobile_safe_glyphs, mobile_apps.
+Also writes themes/index.json (discovery) and per-app manifests.
+Idempotent.
+"""
+from __future__ import annotations
+import json, re, sys, argparse
+from pathlib import Path
+
+import os
+THEMES_DIR = Path(os.environ.get("THEME_PICKER_THEMES_DIR", Path.home()/".config/theme-picker/themes"))
+
+ANSI_NAMES = [
+    "black","red","green","yellow","blue","magenta","cyan","white",
+    "brightBlack","brightRed","brightGreen","brightYellow",
+    "brightBlue","brightMagenta","brightCyan","brightWhite",
+]
+
+RE_FG  = re.compile(r'\\033\]10;(#[0-9a-fA-F]{6})\\007')
+RE_BG  = re.compile(r'\\033\]11;(#[0-9a-fA-F]{6})\\007')
+RE_CUR = re.compile(r'\\033\]12;(#[0-9a-fA-F]{6})\\007')
+RE_ANSI = re.compile(r'\\033\]4;(\d{1,2});(#[0-9a-fA-F]{6})\\007')
+RE_META = re.compile(r'THEME_(BG|FG|ACCENT)="([^"]+)"')
+
+def hex_to_rgb(h: str) -> tuple[int,int,int]:
+    h = h.lstrip("#")
+    return int(h[0:2],16), int(h[2:4],16), int(h[4:6],16)
+
+def rel_lum(hex_color: str) -> float:
+    def chan(c: int) -> float:
+        s = c/255
+        return s/12.92 if s <= 0.03928 else ((s+0.055)/1.055)**2.4
+    r,g,b = hex_to_rgb(hex_color)
+    return 0.2126*chan(r) + 0.7152*chan(g) + 0.0722*chan(b)
+
+def contrast_ratio(fg: str, bg: str) -> float:
+    l1, l2 = rel_lum(fg), rel_lum(bg)
+    hi, lo = max(l1,l2), min(l1,l2)
+    return round((hi+0.05)/(lo+0.05), 2)
+
+def wcag_level(cr: float) -> str:
+    if cr >= 7.0: return "AAA"
+    if cr >= 4.5: return "AA"
+    if cr >= 3.0: return "A"
+    return "fail"
+
+def parse_theme(env_path: Path) -> dict:
+    text = env_path.read_text(encoding="utf-8", errors="replace")
+    meta = dict(RE_META.findall(text))
+    bg  = (RE_BG.search(text)  or [None,None])[1] if RE_BG.search(text)  else None
+    fg  = (RE_FG.search(text)  or [None,None])[1] if RE_FG.search(text)  else None
+    cur = (RE_CUR.search(text) or [None,None])[1] if RE_CUR.search(text) else None
+    bg  = RE_BG.search(text).group(1)  if RE_BG.search(text)  else None
+    fg  = RE_FG.search(text).group(1)  if RE_FG.search(text)  else None
+    cur = RE_CUR.search(text).group(1) if RE_CUR.search(text) else None
+    ansi: dict[int,str] = {}
+    for idx, color in RE_ANSI.findall(text):
+        ansi[int(idx)] = color
+    return {
+        "THEME_BG": meta.get("BG"),
+        "THEME_FG": meta.get("FG"),
+        "THEME_ACCENT": meta.get("ACCENT"),
+        "bg": bg, "fg": fg, "cursor": cur,
+        "ansi": ansi,
+    }
+
+def fallback_palette() -> dict[int,str]:
+    return {
+        0:"#000000",1:"#cd3131",2:"#0dbc79",3:"#e5e510",
+        4:"#2472c8",5:"#bc3fbc",6:"#11a8cd",7:"#e5e5e5",
+        8:"#666666",9:"#f14c4c",10:"#23d18b",11:"#f5f543",
+        12:"#3b8eea",13:"#d670d6",14:"#29b8db",15:"#ffffff",
+    }
+
+def build_termix(slug: str, name: str, category: str, t: dict) -> dict:
+    ansi = dict(t["ansi"])
+    fb = fallback_palette()
+    for i in range(16):
+        ansi.setdefault(i, fb[i])
+    bg = t["bg"] or t["THEME_BG"] or "#1e1e1e"
+    fg = t["fg"] or t["THEME_FG"] or "#dcdcdc"
+    cur = t["cursor"] or t["THEME_ACCENT"] or fg
+    if bg in (None,"default"): bg = "#1e1e1e"
+    if fg in (None,"default"): fg = "#dcdcdc"
+    if cur in (None,"default"): cur = fg
+    colors = {
+        "background": bg, "foreground": fg,
+        "cursor": cur, "cursorAccent": bg,
+        "selectionBackground": ansi[8],
+        "selectionForeground": fg,
+    }
+    for i,n in enumerate(ANSI_NAMES):
+        colors[n] = ansi[i]
+    return {"id": slug, "name": name, "category": category, "colors": colors}
+
+def build_neoserver(name: str, t: dict) -> dict:
+    ansi = dict(t["ansi"])
+    fb = fallback_palette()
+    for i in range(16):
+        ansi.setdefault(i, fb[i])
+    bg = t["bg"] or t["THEME_BG"] or "#1e1e1e"
+    fg = t["fg"] or t["THEME_FG"] or "#dcdcdc"
+    cur = t["cursor"] or t["THEME_ACCENT"] or fg
+    if bg in (None,"default"): bg = "#1e1e1e"
+    if fg in (None,"default"): fg = "#dcdcdc"
+    if cur in (None,"default"): cur = fg
+    return {
+        "title": name, "version": 1,
+        "background": bg, "foreground": fg, "cursor": cur,
+        "cursorText": bg,
+        "selectionBackground": ansi[8], "selectionForeground": fg,
+        "ansi": {
+            "black":         ansi[0], "red":           ansi[1],
+            "green":         ansi[2], "yellow":        ansi[3],
+            "blue":          ansi[4], "magenta":       ansi[5],
+            "cyan":          ansi[6], "white":         ansi[7],
+            "brightBlack":   ansi[8], "brightRed":     ansi[9],
+            "brightGreen":   ansi[10],"brightYellow":  ansi[11],
+            "brightBlue":    ansi[12],"brightMagenta": ansi[13],
+            "brightCyan":    ansi[14],"brightWhite":   ansi[15],
+        },
+    }
+
+def rgb_floats(hex_color: str) -> dict:
+    r,g,b = hex_to_rgb(hex_color)
+    return {
+        "Red Component":   round(r/255, 6),
+        "Green Component": round(g/255, 6),
+        "Blue Component":  round(b/255, 6),
+        "Alpha Component": 1.0,
+        "Color Space":     "sRGB",
+    }
+
+def build_shellfish(name: str, t: dict) -> dict:
+    ansi = dict(t["ansi"])
+    fb = fallback_palette()
+    for i in range(16):
+        ansi.setdefault(i, fb[i])
+    bg = t["bg"] or t["THEME_BG"] or "#1e1e1e"
+    fg = t["fg"] or t["THEME_FG"] or "#dcdcdc"
+    cur = t["cursor"] or t["THEME_ACCENT"] or fg
+    if bg in (None,"default"): bg = "#1e1e1e"
+    if fg in (None,"default"): fg = "#dcdcdc"
+    if cur in (None,"default"): cur = fg
+    out = {"Theme Name": name}
+    for i in range(16):
+        out[f"Ansi {i} Color"] = rgb_floats(ansi[i])
+    out["Background Color"]      = rgb_floats(bg)
+    out["Foreground Color"]      = rgb_floats(fg)
+    out["Cursor Color"]          = rgb_floats(cur)
+    out["Cursor Text Color"]     = rgb_floats(bg)
+    out["Bold Color"]            = rgb_floats(fg)
+    out["Selection Color"]       = rgb_floats(ansi[8])
+    out["Selected Text Color"]   = rgb_floats(fg)
+    return out
+
+def process(slug_dir: Path, dry_run: bool, verbose: bool) -> dict:
+    slug = slug_dir.name
+    env = slug_dir / "theme.env"
+    meta_p = slug_dir / "metadata.json"
+    if not env.exists() or not meta_p.exists():
+        return {"slug": slug, "skipped": True, "reason": "missing files"}
+    metadata = json.loads(meta_p.read_text())
+    t = parse_theme(env)
+    ansi16_complete = all(i in t["ansi"] for i in range(16))
+    bg, fg = t["bg"] or t["THEME_BG"], t["fg"] or t["THEME_FG"]
+    if bg and bg != "default" and fg and fg != "default":
+        cr = contrast_ratio(fg, bg); level = wcag_level(cr)
+    else:
+        cr = None; level = "unknown"
+    nerd = metadata.get("nerd_font_required") is True
+    mobile_safe_glyphs = not nerd
+    name = metadata.get("name", slug)
+    category = "light" if (bg and bg != "default" and rel_lum(bg) > 0.5) else "dark"
+
+    out_dir = slug_dir / "mobile"
+    files = {
+        "termix.json":    build_termix(slug, name, category, t),
+        "neoserver.json": build_neoserver(name, t),
+        "shellfish.json": build_shellfish(name, t),
+    }
+    if not dry_run:
+        out_dir.mkdir(exist_ok=True)
+        for fn, obj in files.items():
+            (out_dir / fn).write_text(json.dumps(obj, indent=2) + "\n")
+
+    metadata["ansi16_complete"]    = ansi16_complete
+    metadata["contrast_ratio"]     = cr
+    metadata["wcag_level"]         = level
+    metadata["mobile_safe_glyphs"] = mobile_safe_glyphs
+    metadata["mobile_apps"]        = ["termix","neoserver","shellfish"]
+    metadata["mobile_category"]    = category
+    if not dry_run:
+        meta_p.write_text(json.dumps(metadata, indent=2) + "\n")
+
+    if verbose:
+        print(f"  {slug}: cr={cr} level={level} ansi16={ansi16_complete}")
+    return {
+        "slug": slug, "name": name, "category": category,
+        "ansi16_complete": ansi16_complete,
+        "contrast_ratio": cr, "wcag_level": level,
+        "mobile_safe_glyphs": mobile_safe_glyphs,
+        "recommended_for": metadata.get("recommended_for"),
+        "rank": metadata.get("rank"),
+    }
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--theme", help="Process only this slug")
+    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--verbose","-v", action="store_true")
+    args = ap.parse_args()
+
+    results = []
+    dirs = sorted(d for d in THEMES_DIR.iterdir() if d.is_dir())
+    if args.theme:
+        dirs = [d for d in dirs if d.name == args.theme]
+        if not dirs:
+            print(f"ERROR: theme '{args.theme}' not found", file=sys.stderr); sys.exit(1)
+
+    warnings = 0
+    for d in dirs:
+        r = process(d, args.dry_run, args.verbose)
+        results.append(r)
+        if not r.get("skipped") and not r.get("ansi16_complete"):
+            warnings += 1
+
+    if not args.dry_run and not args.theme:
+        index = sorted([r for r in results if not r.get("skipped")],
+                       key=lambda x: x.get("rank") or 999)
+        (THEMES_DIR / "index.json").write_text(
+            json.dumps({"version": 1, "themes": index}, indent=2) + "\n"
+        )
+        for app in ("termix","neoserver","shellfish"):
+            manifest = [
+                {**r, "url": f"themes/{r['slug']}/mobile/{app}.json"}
+                for r in index if r.get("ansi16_complete")
+            ]
+            (THEMES_DIR / f"manifest-{app}.json").write_text(
+                json.dumps({"app": app, "count": len(manifest), "themes": manifest}, indent=2) + "\n"
+            )
+
+    print(f"\nProcessed: {len(results)} themes, {warnings} without complete ANSI16 OSC block")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,29 @@
+{
+  "id": "66-vscode-light-plus",
+  "name": "VSCode Light+",
+  "category": "light",
+  "colors": {
+    "background": "#ffffff",
+    "foreground": "#000000",
+    "cursor": "#0451a5",
+    "cursorAccent": "#ffffff",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#000000",
+    "black": "#ffffff",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#0451a5",
+    "magenta": "#af00db",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#0451a5",
+    "brightMagenta": "#af00db",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#000000"
+  }
+}

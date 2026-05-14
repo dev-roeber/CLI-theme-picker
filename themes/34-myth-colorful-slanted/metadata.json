@@ -5,5 +5,15 @@
   "category": "local-generated",
   "nerd_font_required": true,
   "recommended_for": "macbook",
-  "notes": "MYTH Colorful Slanted"
+  "notes": "MYTH Colorful Slanted",
+  "ansi16_complete": true,
+  "contrast_ratio": 12.95,
+  "wcag_level": "AAA",
+  "mobile_safe_glyphs": false,
+  "mobile_apps": [
+    "termix",
+    "neoserver",
+    "shellfish"
+  ],
+  "mobile_category": "dark"
 }

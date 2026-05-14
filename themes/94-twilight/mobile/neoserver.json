@@ -1,0 +1,28 @@
+{
+  "title": "Twilight",
+  "version": 1,
+  "background": "#141414",
+  "foreground": "#e0e0e0",
+  "cursor": "#ce6700",
+  "cursorText": "#141414",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#e0e0e0",
+  "ansi": {
+    "black": "#141414",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ce6700",
+    "magenta": "#9b859d",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ce6700",
+    "brightMagenta": "#9b859d",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#e0e0e0"
+  }
+}

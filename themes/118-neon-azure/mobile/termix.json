@@ -1,0 +1,29 @@
+{
+  "id": "118-neon-azure",
+  "name": "Neon Azure",
+  "category": "dark",
+  "colors": {
+    "background": "#00081f",
+    "foreground": "#1e90ff",
+    "cursor": "#007fff",
+    "cursorAccent": "#00081f",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#1e90ff",
+    "black": "#00081f",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#007fff",
+    "magenta": "#00bfff",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#007fff",
+    "brightMagenta": "#00bfff",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#1e90ff"
+  }
+}

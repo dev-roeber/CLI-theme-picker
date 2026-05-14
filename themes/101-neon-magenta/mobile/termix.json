@@ -1,0 +1,29 @@
+{
+  "id": "101-neon-magenta",
+  "name": "Neon Magenta",
+  "category": "dark",
+  "colors": {
+    "background": "#0a0014",
+    "foreground": "#ff10f0",
+    "cursor": "#ff00ff",
+    "cursorAccent": "#0a0014",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#ff10f0",
+    "black": "#0a0014",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ff00ff",
+    "magenta": "#9d00ff",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ff00ff",
+    "brightMagenta": "#9d00ff",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ff10f0"
+  }
+}

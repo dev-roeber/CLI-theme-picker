@@ -1,0 +1,29 @@
+{
+  "id": "85-pop-os",
+  "name": "Pop!_OS",
+  "category": "dark",
+  "colors": {
+    "background": "#1a1a1a",
+    "foreground": "#cccccc",
+    "cursor": "#48b9c7",
+    "cursorAccent": "#1a1a1a",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#cccccc",
+    "black": "#1a1a1a",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#48b9c7",
+    "magenta": "#faa41a",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#48b9c7",
+    "brightMagenta": "#faa41a",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#cccccc"
+  }
+}

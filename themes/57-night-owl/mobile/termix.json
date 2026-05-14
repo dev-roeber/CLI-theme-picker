@@ -1,0 +1,29 @@
+{
+  "id": "57-night-owl",
+  "name": "Night Owl",
+  "category": "dark",
+  "colors": {
+    "background": "#011627",
+    "foreground": "#d6deeb",
+    "cursor": "#82aaff",
+    "cursorAccent": "#011627",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#d6deeb",
+    "black": "#011627",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#82aaff",
+    "magenta": "#addb67",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#82aaff",
+    "brightMagenta": "#addb67",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#d6deeb"
+  }
+}

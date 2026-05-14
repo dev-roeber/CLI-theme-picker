@@ -1,0 +1,28 @@
+{
+  "title": "Ayu Mirage",
+  "version": 1,
+  "background": "#1f2430",
+  "foreground": "#cbccc6",
+  "cursor": "#ffcc66",
+  "cursorText": "#1f2430",
+  "selectionBackground": "#1a1f29",
+  "selectionForeground": "#cbccc6",
+  "ansi": {
+    "black": "#0f1419",
+    "red": "#f28779",
+    "green": "#d5ff80",
+    "yellow": "#ffd173",
+    "blue": "#73d0ff",
+    "magenta": "#dfbfff",
+    "cyan": "#95e6cb",
+    "white": "#cbccc6",
+    "brightBlack": "#1a1f29",
+    "brightRed": "#f29e74",
+    "brightGreen": "#d5ff80",
+    "brightYellow": "#ffd173",
+    "brightBlue": "#73d0ff",
+    "brightMagenta": "#dfbfff",
+    "brightCyan": "#95e6cb",
+    "brightWhite": "#ffffff"
+  }
+}

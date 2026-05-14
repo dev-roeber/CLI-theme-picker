@@ -1,0 +1,28 @@
+{
+  "title": "Neon Mint",
+  "version": 1,
+  "background": "#001410",
+  "foreground": "#00ffaa",
+  "cursor": "#3eb489",
+  "cursorText": "#001410",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#00ffaa",
+  "ansi": {
+    "black": "#001410",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#3eb489",
+    "magenta": "#50f0a0",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#3eb489",
+    "brightMagenta": "#50f0a0",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#00ffaa"
+  }
+}

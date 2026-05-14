@@ -5,5 +5,15 @@
   "category": "local-generated",
   "nerd_font_required": false,
   "recommended_for": "macbook",
-  "notes": "Ayu Light"
+  "notes": "Ayu Light",
+  "ansi16_complete": true,
+  "contrast_ratio": 5.52,
+  "wcag_level": "AA",
+  "mobile_safe_glyphs": true,
+  "mobile_apps": [
+    "termix",
+    "neoserver",
+    "shellfish"
+  ],
+  "mobile_category": "light"
 }

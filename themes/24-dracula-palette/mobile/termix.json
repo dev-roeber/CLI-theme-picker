@@ -1,0 +1,29 @@
+{
+  "id": "24-dracula-palette",
+  "name": "Dracula erweiterte Palette",
+  "category": "dark",
+  "colors": {
+    "background": "#282a36",
+    "foreground": "#f8f8f2",
+    "cursor": "#ff79c6",
+    "cursorAccent": "#282a36",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#f8f8f2",
+    "black": "#282a36",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ff79c6",
+    "magenta": "#bb9af7",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ff79c6",
+    "brightMagenta": "#bb9af7",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#f8f8f2"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "83-molokai",
+  "name": "Molokai",
+  "category": "dark",
+  "colors": {
+    "background": "#1b1d1e",
+    "foreground": "#f8f8f2",
+    "cursor": "#f92672",
+    "cursorAccent": "#1b1d1e",
+    "selectionBackground": "#75715e",
+    "selectionForeground": "#f8f8f2",
+    "black": "#1b1d1e",
+    "red": "#f92672",
+    "green": "#a6e22e",
+    "yellow": "#e6db74",
+    "blue": "#66d9ef",
+    "magenta": "#ae81ff",
+    "cyan": "#a1efe4",
+    "white": "#f8f8f2",
+    "brightBlack": "#75715e",
+    "brightRed": "#f92672",
+    "brightGreen": "#a6e22e",
+    "brightYellow": "#e6db74",
+    "brightBlue": "#66d9ef",
+    "brightMagenta": "#ae81ff",
+    "brightCyan": "#a1efe4",
+    "brightWhite": "#f9f8f5"
+  }
+}

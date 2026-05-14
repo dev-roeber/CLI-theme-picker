@@ -1,0 +1,28 @@
+{
+  "title": "TaouMou Pastel Style",
+  "version": 1,
+  "background": "#1f1f28",
+  "foreground": "#dcd7ba",
+  "cursor": "#c8c093",
+  "cursorText": "#1f1f28",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#dcd7ba",
+  "ansi": {
+    "black": "#1f1f28",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#c8c093",
+    "magenta": "#e6c384",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#c8c093",
+    "brightMagenta": "#e6c384",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#dcd7ba"
+  }
+}

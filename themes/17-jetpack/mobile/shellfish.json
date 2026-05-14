@@ -1,0 +1,164 @@
+{
+  "Theme Name": "Jetpack Preset",
+  "Ansi 0 Color": {
+    "Red Component": 0.0,
+    "Green Component": 0.0,
+    "Blue Component": 0.0,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 1 Color": {
+    "Red Component": 0.803922,
+    "Green Component": 0.192157,
+    "Blue Component": 0.192157,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 2 Color": {
+    "Red Component": 0.05098,
+    "Green Component": 0.737255,
+    "Blue Component": 0.47451,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 3 Color": {
+    "Red Component": 0.898039,
+    "Green Component": 0.898039,
+    "Blue Component": 0.062745,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 4 Color": {
+    "Red Component": 0.141176,
+    "Green Component": 0.447059,
+    "Blue Component": 0.784314,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 5 Color": {
+    "Red Component": 0.737255,
+    "Green Component": 0.247059,
+    "Blue Component": 0.737255,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 6 Color": {
+    "Red Component": 0.066667,
+    "Green Component": 0.658824,
+    "Blue Component": 0.803922,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 7 Color": {
+    "Red Component": 0.898039,
+    "Green Component": 0.898039,
+    "Blue Component": 0.898039,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 8 Color": {
+    "Red Component": 0.4,
+    "Green Component": 0.4,
+    "Blue Component": 0.4,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 9 Color": {
+    "Red Component": 0.945098,
+    "Green Component": 0.298039,
+    "Blue Component": 0.298039,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 10 Color": {
+    "Red Component": 0.137255,
+    "Green Component": 0.819608,
+    "Blue Component": 0.545098,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 11 Color": {
+    "Red Component": 0.960784,
+    "Green Component": 0.960784,
+    "Blue Component": 0.262745,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 12 Color": {
+    "Red Component": 0.231373,
+    "Green Component": 0.556863,
+    "Blue Component": 0.917647,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 13 Color": {
+    "Red Component": 0.839216,
+    "Green Component": 0.439216,
+    "Blue Component": 0.839216,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 14 Color": {
+    "Red Component": 0.160784,
+    "Green Component": 0.721569,
+    "Blue Component": 0.858824,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 15 Color": {
+    "Red Component": 1.0,
+    "Green Component": 1.0,
+    "Blue Component": 1.0,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Background Color": {
+    "Red Component": 0.117647,
+    "Green Component": 0.117647,
+    "Blue Component": 0.117647,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Foreground Color": {
+    "Red Component": 0.862745,
+    "Green Component": 0.862745,
+    "Blue Component": 0.862745,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Cursor Color": {
+    "Red Component": 0.372549,
+    "Green Component": 0.843137,
+    "Blue Component": 0.686275,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Cursor Text Color": {
+    "Red Component": 0.117647,
+    "Green Component": 0.117647,
+    "Blue Component": 0.117647,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Bold Color": {
+    "Red Component": 0.862745,
+    "Green Component": 0.862745,
+    "Blue Component": 0.862745,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Selection Color": {
+    "Red Component": 0.4,
+    "Green Component": 0.4,
+    "Blue Component": 0.4,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Selected Text Color": {
+    "Red Component": 0.862745,
+    "Green Component": 0.862745,
+    "Blue Component": 0.862745,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  }
+}

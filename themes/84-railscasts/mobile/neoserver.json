@@ -1,0 +1,28 @@
+{
+  "title": "Railscasts",
+  "version": 1,
+  "background": "#2b2b2b",
+  "foreground": "#e6e1dc",
+  "cursor": "#cc7833",
+  "cursorText": "#2b2b2b",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#e6e1dc",
+  "ansi": {
+    "black": "#2b2b2b",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#cc7833",
+    "magenta": "#a5c261",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#cc7833",
+    "brightMagenta": "#a5c261",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#e6e1dc"
+  }
+}

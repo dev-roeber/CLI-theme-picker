@@ -1,0 +1,28 @@
+{
+  "title": "Bluloco Light",
+  "version": 1,
+  "background": "#f9f9f9",
+  "foreground": "#383a42",
+  "cursor": "#0098dd",
+  "cursorText": "#f9f9f9",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#383a42",
+  "ansi": {
+    "black": "#f9f9f9",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#0098dd",
+    "magenta": "#23974a",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#0098dd",
+    "brightMagenta": "#23974a",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#383a42"
+  }
+}

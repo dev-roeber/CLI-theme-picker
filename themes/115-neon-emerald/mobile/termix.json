@@ -1,0 +1,29 @@
+{
+  "id": "115-neon-emerald",
+  "name": "Neon Emerald",
+  "category": "dark",
+  "colors": {
+    "background": "#001408",
+    "foreground": "#00ff7f",
+    "cursor": "#50c878",
+    "cursorAccent": "#001408",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#00ff7f",
+    "black": "#001408",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#50c878",
+    "magenta": "#39ff14",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#50c878",
+    "brightMagenta": "#39ff14",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#00ff7f"
+  }
+}

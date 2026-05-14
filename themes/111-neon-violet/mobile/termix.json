@@ -1,0 +1,29 @@
+{
+  "id": "111-neon-violet",
+  "name": "Neon Violet",
+  "category": "dark",
+  "colors": {
+    "background": "#0d0014",
+    "foreground": "#9d00ff",
+    "cursor": "#7f00ff",
+    "cursorAccent": "#0d0014",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#9d00ff",
+    "black": "#0d0014",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#7f00ff",
+    "magenta": "#5d00ff",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#7f00ff",
+    "brightMagenta": "#5d00ff",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#9d00ff"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "54-material-darker",
+  "name": "Material Darker",
+  "category": "dark",
+  "colors": {
+    "background": "#212121",
+    "foreground": "#eeffff",
+    "cursor": "#82aaff",
+    "cursorAccent": "#212121",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#eeffff",
+    "black": "#212121",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#82aaff",
+    "magenta": "#c792ea",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#82aaff",
+    "brightMagenta": "#c792ea",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#eeffff"
+  }
+}

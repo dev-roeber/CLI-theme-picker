@@ -5,5 +5,15 @@
   "category": "official-preset",
   "nerd_font_required": false,
   "recommended_for": "iphone",
-  "notes": "No Nerd Font Preset theme"
+  "notes": "No Nerd Font Preset theme",
+  "ansi16_complete": false,
+  "contrast_ratio": null,
+  "wcag_level": "unknown",
+  "mobile_safe_glyphs": true,
+  "mobile_apps": [
+    "termix",
+    "neoserver",
+    "shellfish"
+  ],
+  "mobile_category": "dark"
 }

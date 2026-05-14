@@ -1,0 +1,28 @@
+{
+  "title": "Spacegray",
+  "version": 1,
+  "background": "#2b303b",
+  "foreground": "#c0c5ce",
+  "cursor": "#bf616a",
+  "cursorText": "#2b303b",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#c0c5ce",
+  "ansi": {
+    "black": "#2b303b",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#bf616a",
+    "magenta": "#a3be8c",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#bf616a",
+    "brightMagenta": "#a3be8c",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#c0c5ce"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "114-neon-gold",
+  "name": "Neon Gold",
+  "category": "dark",
+  "colors": {
+    "background": "#141200",
+    "foreground": "#ffc107",
+    "cursor": "#ffd700",
+    "cursorAccent": "#141200",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#ffc107",
+    "black": "#141200",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ffd700",
+    "magenta": "#ffbf00",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ffd700",
+    "brightMagenta": "#ffbf00",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ffc107"
+  }
+}

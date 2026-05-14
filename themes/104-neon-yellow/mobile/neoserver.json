@@ -1,0 +1,28 @@
+{
+  "title": "Neon Yellow",
+  "version": 1,
+  "background": "#141400",
+  "foreground": "#fff700",
+  "cursor": "#ffff00",
+  "cursorText": "#141400",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#fff700",
+  "ansi": {
+    "black": "#141400",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ffff00",
+    "magenta": "#ffd300",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ffff00",
+    "brightMagenta": "#ffd300",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#fff700"
+  }
+}

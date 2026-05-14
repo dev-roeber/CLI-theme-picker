@@ -1,0 +1,29 @@
+{
+  "id": "61-atom-one-light",
+  "name": "Atom One Light",
+  "category": "light",
+  "colors": {
+    "background": "#fafafa",
+    "foreground": "#383a42",
+    "cursor": "#4078f2",
+    "cursorAccent": "#fafafa",
+    "selectionBackground": "#383a42",
+    "selectionForeground": "#383a42",
+    "black": "#000000",
+    "red": "#e45649",
+    "green": "#50a14f",
+    "yellow": "#c18401",
+    "blue": "#4078f2",
+    "magenta": "#a626a4",
+    "cyan": "#0184bc",
+    "white": "#a0a1a7",
+    "brightBlack": "#383a42",
+    "brightRed": "#e45649",
+    "brightGreen": "#50a14f",
+    "brightYellow": "#c18401",
+    "brightBlue": "#4078f2",
+    "brightMagenta": "#a626a4",
+    "brightCyan": "#0184bc",
+    "brightWhite": "#383a42"
+  }
+}

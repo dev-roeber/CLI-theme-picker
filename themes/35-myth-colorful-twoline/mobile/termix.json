@@ -1,0 +1,29 @@
+{
+  "id": "35-myth-colorful-twoline",
+  "name": "MYTH Colorful Twoline",
+  "category": "dark",
+  "colors": {
+    "background": "#1e1e2e",
+    "foreground": "#f5e0dc",
+    "cursor": "#cba6f7",
+    "cursorAccent": "#1e1e2e",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#f5e0dc",
+    "black": "#1e1e2e",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#cba6f7",
+    "magenta": "#a6e3a1",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#cba6f7",
+    "brightMagenta": "#a6e3a1",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#f5e0dc"
+  }
+}

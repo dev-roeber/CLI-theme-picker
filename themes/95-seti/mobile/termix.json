@@ -1,0 +1,29 @@
+{
+  "id": "95-seti",
+  "name": "Seti",
+  "category": "dark",
+  "colors": {
+    "background": "#151718",
+    "foreground": "#cfd2d1",
+    "cursor": "#55b5db",
+    "cursorAccent": "#151718",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#cfd2d1",
+    "black": "#151718",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#55b5db",
+    "magenta": "#9fca56",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#55b5db",
+    "brightMagenta": "#9fca56",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#cfd2d1"
+  }
+}

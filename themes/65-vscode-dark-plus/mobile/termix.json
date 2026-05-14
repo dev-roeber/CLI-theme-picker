@@ -1,0 +1,29 @@
+{
+  "id": "65-vscode-dark-plus",
+  "name": "VSCode Dark+",
+  "category": "dark",
+  "colors": {
+    "background": "#1e1e1e",
+    "foreground": "#d4d4d4",
+    "cursor": "#569cd6",
+    "cursorAccent": "#1e1e1e",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#d4d4d4",
+    "black": "#1e1e1e",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#569cd6",
+    "magenta": "#c586c0",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#569cd6",
+    "brightMagenta": "#c586c0",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#d4d4d4"
+  }
+}

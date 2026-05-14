@@ -1,0 +1,29 @@
+{
+  "id": "28-nord-powerline",
+  "name": "Nord mit Powerline-Trennern",
+  "category": "dark",
+  "colors": {
+    "background": "#2e3440",
+    "foreground": "#eceff4",
+    "cursor": "#88c0d0",
+    "cursorAccent": "#2e3440",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#eceff4",
+    "black": "#2e3440",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#88c0d0",
+    "magenta": "#81a1c1",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#88c0d0",
+    "brightMagenta": "#81a1c1",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#eceff4"
+  }
+}

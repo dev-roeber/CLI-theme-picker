@@ -1,0 +1,29 @@
+{
+  "id": "120-neon-amber",
+  "name": "Neon Amber",
+  "category": "dark",
+  "colors": {
+    "background": "#140800",
+    "foreground": "#ff8c00",
+    "cursor": "#ffbf00",
+    "cursorAccent": "#140800",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#ff8c00",
+    "black": "#140800",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ffbf00",
+    "magenta": "#ffaa00",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ffbf00",
+    "brightMagenta": "#ffaa00",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ff8c00"
+  }
+}

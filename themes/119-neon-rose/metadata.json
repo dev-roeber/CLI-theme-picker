@@ -5,5 +5,15 @@
   "category": "local-generated",
   "nerd_font_required": true,
   "recommended_for": "macbook",
-  "notes": "Neon: Rose Neon"
+  "notes": "Neon: Rose Neon",
+  "ansi16_complete": true,
+  "contrast_ratio": 5.38,
+  "wcag_level": "AA",
+  "mobile_safe_glyphs": false,
+  "mobile_apps": [
+    "termix",
+    "neoserver",
+    "shellfish"
+  ],
+  "mobile_category": "dark"
 }

@@ -5,5 +5,15 @@
   "category": "local-generated",
   "nerd_font_required": true,
   "recommended_for": "macbook",
-  "notes": "Brittany Chiang Deep Sea"
+  "notes": "Brittany Chiang Deep Sea",
+  "ansi16_complete": true,
+  "contrast_ratio": 5.69,
+  "wcag_level": "AA",
+  "mobile_safe_glyphs": false,
+  "mobile_apps": [
+    "termix",
+    "neoserver",
+    "shellfish"
+  ],
+  "mobile_category": "dark"
 }

@@ -1,0 +1,28 @@
+{
+  "title": "MYTH Colorful Slanted",
+  "version": 1,
+  "background": "#1e1e2e",
+  "foreground": "#f5e0dc",
+  "cursor": "#fab387",
+  "cursorText": "#1e1e2e",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#f5e0dc",
+  "ansi": {
+    "black": "#1e1e2e",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#fab387",
+    "magenta": "#89dceb",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#fab387",
+    "brightMagenta": "#89dceb",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#f5e0dc"
+  }
+}

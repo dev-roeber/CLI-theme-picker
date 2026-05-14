@@ -1,0 +1,28 @@
+{
+  "title": "Neon Lime",
+  "version": 1,
+  "background": "#0a1400",
+  "foreground": "#ccff00",
+  "cursor": "#bfff00",
+  "cursorText": "#0a1400",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#ccff00",
+  "ansi": {
+    "black": "#0a1400",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#bfff00",
+    "magenta": "#aaff00",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#bfff00",
+    "brightMagenta": "#aaff00",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ccff00"
+  }
+}

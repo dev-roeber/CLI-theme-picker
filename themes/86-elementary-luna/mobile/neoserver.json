@@ -1,0 +1,28 @@
+{
+  "title": "Elementary Luna",
+  "version": 1,
+  "background": "#1d1f21",
+  "foreground": "#c5c8c6",
+  "cursor": "#3b81d8",
+  "cursorText": "#1d1f21",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#c5c8c6",
+  "ansi": {
+    "black": "#1d1f21",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#3b81d8",
+    "magenta": "#68b723",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#3b81d8",
+    "brightMagenta": "#68b723",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#c5c8c6"
+  }
+}

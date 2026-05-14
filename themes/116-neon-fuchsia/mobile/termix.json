@@ -1,0 +1,29 @@
+{
+  "id": "116-neon-fuchsia",
+  "name": "Neon Fuchsia",
+  "category": "dark",
+  "colors": {
+    "background": "#14000d",
+    "foreground": "#ff77ff",
+    "cursor": "#ff00ff",
+    "cursorAccent": "#14000d",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#ff77ff",
+    "black": "#14000d",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ff00ff",
+    "magenta": "#cc00cc",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ff00ff",
+    "brightMagenta": "#cc00cc",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ff77ff"
+  }
+}

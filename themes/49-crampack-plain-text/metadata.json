@@ -5,5 +5,15 @@
   "category": "local-generated",
   "nerd_font_required": false,
   "recommended_for": "iphone",
-  "notes": "Variant F; bat theme ansi"
+  "notes": "Variant F; bat theme ansi",
+  "ansi16_complete": false,
+  "contrast_ratio": null,
+  "wcag_level": "unknown",
+  "mobile_safe_glyphs": true,
+  "mobile_apps": [
+    "termix",
+    "neoserver",
+    "shellfish"
+  ],
+  "mobile_category": "dark"
 }

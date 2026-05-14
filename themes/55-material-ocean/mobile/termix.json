@@ -1,0 +1,29 @@
+{
+  "id": "55-material-ocean",
+  "name": "Material Ocean",
+  "category": "dark",
+  "colors": {
+    "background": "#0f111a",
+    "foreground": "#a6accd",
+    "cursor": "#80cbc4",
+    "cursorAccent": "#0f111a",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#a6accd",
+    "black": "#0f111a",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#80cbc4",
+    "magenta": "#82aaff",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#80cbc4",
+    "brightMagenta": "#82aaff",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#a6accd"
+  }
+}

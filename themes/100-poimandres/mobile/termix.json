@@ -1,0 +1,29 @@
+{
+  "id": "100-poimandres",
+  "name": "Poimandres",
+  "category": "dark",
+  "colors": {
+    "background": "#1b1e28",
+    "foreground": "#a6accd",
+    "cursor": "#5de4c7",
+    "cursorAccent": "#1b1e28",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#a6accd",
+    "black": "#1b1e28",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#5de4c7",
+    "magenta": "#add7ff",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#5de4c7",
+    "brightMagenta": "#add7ff",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#a6accd"
+  }
+}

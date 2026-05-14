@@ -1,0 +1,29 @@
+{
+  "id": "112-neon-turquoise",
+  "name": "Neon Turquoise",
+  "category": "dark",
+  "colors": {
+    "background": "#001414",
+    "foreground": "#00ced1",
+    "cursor": "#40e0d0",
+    "cursorAccent": "#001414",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#00ced1",
+    "black": "#001414",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#40e0d0",
+    "magenta": "#00ffff",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#40e0d0",
+    "brightMagenta": "#00ffff",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#00ced1"
+  }
+}

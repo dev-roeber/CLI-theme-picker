@@ -5,5 +5,15 @@
   "category": "local-generated",
   "nerd_font_required": true,
   "recommended_for": "macbook",
-  "notes": "Solarized hell"
+  "notes": "Solarized hell",
+  "ansi16_complete": true,
+  "contrast_ratio": 4.13,
+  "wcag_level": "A",
+  "mobile_safe_glyphs": false,
+  "mobile_apps": [
+    "termix",
+    "neoserver",
+    "shellfish"
+  ],
+  "mobile_category": "light"
 }

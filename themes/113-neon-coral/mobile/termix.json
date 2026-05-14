@@ -1,0 +1,29 @@
+{
+  "id": "113-neon-coral",
+  "name": "Neon Coral",
+  "category": "dark",
+  "colors": {
+    "background": "#140505",
+    "foreground": "#ff6f61",
+    "cursor": "#ff7f50",
+    "cursorAccent": "#140505",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#ff6f61",
+    "black": "#140505",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ff7f50",
+    "magenta": "#ff4040",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ff7f50",
+    "brightMagenta": "#ff4040",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ff6f61"
+  }
+}

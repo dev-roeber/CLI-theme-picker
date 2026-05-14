@@ -1,0 +1,29 @@
+{
+  "id": "77-base16-eighties",
+  "name": "Base16 Eighties",
+  "category": "dark",
+  "colors": {
+    "background": "#2d2d2d",
+    "foreground": "#d3d0c8",
+    "cursor": "#6699cc",
+    "cursorAccent": "#2d2d2d",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#d3d0c8",
+    "black": "#2d2d2d",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#6699cc",
+    "magenta": "#f99157",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#6699cc",
+    "brightMagenta": "#f99157",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#d3d0c8"
+  }
+}

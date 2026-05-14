@@ -1,0 +1,28 @@
+{
+  "title": "Jellybeans",
+  "version": 1,
+  "background": "#151515",
+  "foreground": "#e8e8d3",
+  "cursor": "#88b8f6",
+  "cursorText": "#151515",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#e8e8d3",
+  "ansi": {
+    "black": "#151515",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#88b8f6",
+    "magenta": "#ffb964",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#88b8f6",
+    "brightMagenta": "#ffb964",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#e8e8d3"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "title": "tr3ss Viking blue/grey",
+  "version": 1,
+  "background": "#1c1f2b",
+  "foreground": "#cad3f5",
+  "cursor": "#7287fd",
+  "cursorText": "#1c1f2b",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#cad3f5",
+  "ansi": {
+    "black": "#1c1f2b",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#7287fd",
+    "magenta": "#4c5491",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#7287fd",
+    "brightMagenta": "#4c5491",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#cad3f5"
+  }
+}

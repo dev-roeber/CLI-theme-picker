@@ -1,0 +1,164 @@
+{
+  "Theme Name": "TaouMou Pills (runde Segmente)",
+  "Ansi 0 Color": {
+    "Red Component": 0.121569,
+    "Green Component": 0.121569,
+    "Blue Component": 0.156863,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 1 Color": {
+    "Red Component": 0.968627,
+    "Green Component": 0.462745,
+    "Blue Component": 0.556863,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 2 Color": {
+    "Red Component": 0.619608,
+    "Green Component": 0.807843,
+    "Blue Component": 0.415686,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 3 Color": {
+    "Red Component": 0.878431,
+    "Green Component": 0.686275,
+    "Blue Component": 0.407843,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 4 Color": {
+    "Red Component": 0.494118,
+    "Green Component": 0.611765,
+    "Blue Component": 0.847059,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 5 Color": {
+    "Red Component": 0.584314,
+    "Green Component": 0.498039,
+    "Blue Component": 0.721569,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 6 Color": {
+    "Red Component": 0.490196,
+    "Green Component": 0.811765,
+    "Blue Component": 1.0,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 7 Color": {
+    "Red Component": 0.662745,
+    "Green Component": 0.694118,
+    "Blue Component": 0.839216,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 8 Color": {
+    "Red Component": 0.254902,
+    "Green Component": 0.282353,
+    "Blue Component": 0.407843,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 9 Color": {
+    "Red Component": 0.968627,
+    "Green Component": 0.462745,
+    "Blue Component": 0.556863,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 10 Color": {
+    "Red Component": 0.619608,
+    "Green Component": 0.807843,
+    "Blue Component": 0.415686,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 11 Color": {
+    "Red Component": 0.878431,
+    "Green Component": 0.686275,
+    "Blue Component": 0.407843,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 12 Color": {
+    "Red Component": 0.494118,
+    "Green Component": 0.611765,
+    "Blue Component": 0.847059,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 13 Color": {
+    "Red Component": 0.584314,
+    "Green Component": 0.498039,
+    "Blue Component": 0.721569,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 14 Color": {
+    "Red Component": 0.490196,
+    "Green Component": 0.811765,
+    "Blue Component": 1.0,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Ansi 15 Color": {
+    "Red Component": 0.862745,
+    "Green Component": 0.843137,
+    "Blue Component": 0.729412,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Background Color": {
+    "Red Component": 0.121569,
+    "Green Component": 0.121569,
+    "Blue Component": 0.156863,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Foreground Color": {
+    "Red Component": 0.862745,
+    "Green Component": 0.843137,
+    "Blue Component": 0.729412,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Cursor Color": {
+    "Red Component": 0.494118,
+    "Green Component": 0.611765,
+    "Blue Component": 0.847059,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Cursor Text Color": {
+    "Red Component": 0.121569,
+    "Green Component": 0.121569,
+    "Blue Component": 0.156863,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Bold Color": {
+    "Red Component": 0.862745,
+    "Green Component": 0.843137,
+    "Blue Component": 0.729412,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Selection Color": {
+    "Red Component": 0.254902,
+    "Green Component": 0.282353,
+    "Blue Component": 0.407843,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  },
+  "Selected Text Color": {
+    "Red Component": 0.862745,
+    "Green Component": 0.843137,
+    "Blue Component": 0.729412,
+    "Alpha Component": 1.0,
+    "Color Space": "sRGB"
+  }
+}

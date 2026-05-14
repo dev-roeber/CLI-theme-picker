@@ -1,0 +1,28 @@
+{
+  "title": "Neon Rose",
+  "version": 1,
+  "background": "#14000a",
+  "foreground": "#ff007f",
+  "cursor": "#ff66cc",
+  "cursorText": "#14000a",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#ff007f",
+  "ansi": {
+    "black": "#14000a",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ff66cc",
+    "magenta": "#ff1493",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ff66cc",
+    "brightMagenta": "#ff1493",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ff007f"
+  }
+}

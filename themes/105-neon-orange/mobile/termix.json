@@ -1,0 +1,29 @@
+{
+  "id": "105-neon-orange",
+  "name": "Neon Orange Lava",
+  "category": "dark",
+  "colors": {
+    "background": "#140a00",
+    "foreground": "#ff7f00",
+    "cursor": "#ff6700",
+    "cursorAccent": "#140a00",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#ff7f00",
+    "black": "#140a00",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#ff6700",
+    "magenta": "#ff4500",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#ff6700",
+    "brightMagenta": "#ff4500",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ff7f00"
+  }
+}

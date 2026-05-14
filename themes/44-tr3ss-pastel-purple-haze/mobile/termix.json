@@ -1,0 +1,29 @@
+{
+  "id": "44-tr3ss-pastel-purple-haze",
+  "name": "tr3ss Pastel Purple Haze",
+  "category": "dark",
+  "colors": {
+    "background": "#1e1e2e",
+    "foreground": "#cdd6f4",
+    "cursor": "#c4a7e7",
+    "cursorAccent": "#1e1e2e",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#cdd6f4",
+    "black": "#1e1e2e",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#c4a7e7",
+    "magenta": "#7e6e9c",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#c4a7e7",
+    "brightMagenta": "#7e6e9c",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#cdd6f4"
+  }
+}

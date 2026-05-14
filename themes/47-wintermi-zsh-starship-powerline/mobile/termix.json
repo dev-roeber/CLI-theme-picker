@@ -1,0 +1,29 @@
+{
+  "id": "47-wintermi-zsh-starship-powerline",
+  "name": "wintermi Powerline",
+  "category": "dark",
+  "colors": {
+    "background": "#1d2021",
+    "foreground": "#ebdbb2",
+    "cursor": "#458588",
+    "cursorAccent": "#1d2021",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#ebdbb2",
+    "black": "#1d2021",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#458588",
+    "magenta": "#bb9af7",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#458588",
+    "brightMagenta": "#bb9af7",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ebdbb2"
+  }
+}

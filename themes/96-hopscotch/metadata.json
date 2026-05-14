@@ -5,5 +5,15 @@
   "category": "local-generated",
   "nerd_font_required": true,
   "recommended_for": "macbook",
-  "notes": "Hopscotch Theme"
+  "notes": "Hopscotch Theme",
+  "ansi16_complete": true,
+  "contrast_ratio": 6.92,
+  "wcag_level": "AA",
+  "mobile_safe_glyphs": false,
+  "mobile_apps": [
+    "termix",
+    "neoserver",
+    "shellfish"
+  ],
+  "mobile_category": "dark"
 }

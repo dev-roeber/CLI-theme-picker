@@ -1,0 +1,28 @@
+{
+  "title": "Ayu Dark",
+  "version": 1,
+  "background": "#0a0e14",
+  "foreground": "#b3b1ad",
+  "cursor": "#e6b450",
+  "cursorText": "#0a0e14",
+  "selectionBackground": "#686868",
+  "selectionForeground": "#b3b1ad",
+  "ansi": {
+    "black": "#01060e",
+    "red": "#ea6c73",
+    "green": "#7fd962",
+    "yellow": "#f9af4f",
+    "blue": "#53bdfa",
+    "magenta": "#cda1fa",
+    "cyan": "#90e1c6",
+    "white": "#c7c7c7",
+    "brightBlack": "#686868",
+    "brightRed": "#f07178",
+    "brightGreen": "#aad94c",
+    "brightYellow": "#ffb454",
+    "brightBlue": "#59c2ff",
+    "brightMagenta": "#d2a6ff",
+    "brightCyan": "#95e6cb",
+    "brightWhite": "#ffffff"
+  }
+}

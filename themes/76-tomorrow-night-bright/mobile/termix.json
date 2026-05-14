@@ -1,0 +1,29 @@
+{
+  "id": "76-tomorrow-night-bright",
+  "name": "Tomorrow Night Bright",
+  "category": "dark",
+  "colors": {
+    "background": "#000000",
+    "foreground": "#eaeaea",
+    "cursor": "#7aa6da",
+    "cursorAccent": "#000000",
+    "selectionBackground": "#414868",
+    "selectionForeground": "#eaeaea",
+    "black": "#000000",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#7aa6da",
+    "magenta": "#b9ca4a",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#7aa6da",
+    "brightMagenta": "#b9ca4a",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#eaeaea"
+  }
+}

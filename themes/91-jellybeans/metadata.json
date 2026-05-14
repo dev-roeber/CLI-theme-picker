@@ -5,5 +5,15 @@
   "category": "local-generated",
   "nerd_font_required": true,
   "recommended_for": "all",
-  "notes": "Jellybeans"
+  "notes": "Jellybeans",
+  "ansi16_complete": true,
+  "contrast_ratio": 14.71,
+  "wcag_level": "AAA",
+  "mobile_safe_glyphs": false,
+  "mobile_apps": [
+    "termix",
+    "neoserver",
+    "shellfish"
+  ],
+  "mobile_category": "dark"
 }

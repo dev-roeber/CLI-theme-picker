@@ -1,0 +1,28 @@
+{
+  "title": "TaouMou Pills (runde Segmente)",
+  "version": 1,
+  "background": "#1f1f28",
+  "foreground": "#dcd7ba",
+  "cursor": "#7e9cd8",
+  "cursorText": "#1f1f28",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#dcd7ba",
+  "ansi": {
+    "black": "#1f1f28",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#7e9cd8",
+    "magenta": "#957fb8",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#7e9cd8",
+    "brightMagenta": "#957fb8",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#dcd7ba"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Tomorrow Night Blue",
+  "version": 1,
+  "background": "#002451",
+  "foreground": "#ffffff",
+  "cursor": "#bbdaff",
+  "cursorText": "#002451",
+  "selectionBackground": "#414868",
+  "selectionForeground": "#ffffff",
+  "ansi": {
+    "black": "#002451",
+    "red": "#f7768e",
+    "green": "#9ece6a",
+    "yellow": "#e0af68",
+    "blue": "#bbdaff",
+    "magenta": "#ffeead",
+    "cyan": "#7dcfff",
+    "white": "#a9b1d6",
+    "brightBlack": "#414868",
+    "brightRed": "#f7768e",
+    "brightGreen": "#9ece6a",
+    "brightYellow": "#e0af68",
+    "brightBlue": "#bbdaff",
+    "brightMagenta": "#ffeead",
+    "brightCyan": "#7dcfff",
+    "brightWhite": "#ffffff"
+  }
+}
